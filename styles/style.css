@@ -267,8 +267,25 @@ form {
 
 .alertMessage {
   padding: 10%;
+  min-width: 100px;
 }
 
 .dismiss {
   color: firebrick;
+}
+
+.lato {
+  font-family: 'Lato', sans-serif;
+}
+
+.montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.raleway {
+  font-family: 'Raleway', sans-serif;
+}
+
+.roboto {
+  font-family: 'Roboto', sans-serif;
 }
