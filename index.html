@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <article class="inputBox">
+            <form action="" method="post" id="alertBoxStyles">
+                <label for="fontFamily">Font family?</label>
+                <select name="fontFamily" id="fontFamily">
+                    <option value="none" selected>None</option>
+                    <option value="roboto">Roboto</option>
+                    <option value="montserrat">Montserrat</option>
+                    <option value="lato">Lato</option>
+                    <option value="raleway">Raleway</option>
+                </select>
+                <label for="alertMessage">alert message? leave empty if no message.</label>
+                <input type="text" name="alertMessage" id="alertMessage">
+                <label for="alertBoxPaddingX">Alert box width:</label>
+                <input type="range" name="alertBoxPaddingX" id="alertBoxPaddingX">
+                <label for="alertBoxPaddingY">Alert box height:</label>
+                <input type="range" name="alertBoxPaddingY" id="alertBoxPaddingY">
+                <label for="alertBoxColor">Alert box color:</label>
+                <input type="color" name="alertBoxColor" id="alertBoxColor">
+                <label for="alertBoxBorderRadius">Border radius:</label>
+                <input type="range" name="alertBoxBorderRadius" id="alertBoxBorderRadius">
+                <label for="alertBoxBorderWidth">Border width:</label>
+                <input type="range" name="alertBoxBorderWidth" id="alertBoxBorderWidth">
+                <label for="alertBoxBorderColor">Alert box color:</label>
+                <input type="color" name="alertBoxBorderColor" id="alertBoxBorderColor">
+                <label for="alertMessagePadding">Alert message padding:</label>
+                <input type="range" name="alertMessagePadding" id="alertMessagePadding" disabled>
+                <label for="alertMessageColor">Alert message color:</label>
+                <input type="color" name="alertMessageColor" id="alertMessageColor" disabled>
+            </form>
+            <form action="" method="post" id="buttonStyles">
+                
+            </form>
+        </article>
+        <article class="outputBox">
+            <span class="alertBox">
+                <p class="alertMessage">your alert text here</p>
+                <button class="dismiss">ok</button>
+            </span>
+        </article>
+    </div>
+</body>
+<script src="./scripts/app.js"></script>
+</html>
