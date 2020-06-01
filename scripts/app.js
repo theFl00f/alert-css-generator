@@ -61,7 +61,7 @@ $alertColor.on('input', () => {
     changeColor($alertBox, 'backgroundColor', $alertColor)
 })
 
-$alertMessage.on('keyup', () => {
+$alertMessage.on('input', () => {
     getMessage();
     changeMessagePadding();
 })
