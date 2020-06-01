@@ -221,6 +221,14 @@ textarea {
   overflow: hidden;
 }
 
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.4rem;
+}
+
 .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -238,7 +246,6 @@ textarea {
 }
 
 .alertBox {
-  background-color: red;
   padding: 10% 2%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -252,6 +259,7 @@ textarea {
       -ms-flex-align: center;
           align-items: center;
   border: 6px black solid;
+  min-width: 12rem;
 }
 
 form {
@@ -268,7 +276,6 @@ form {
 
 .alertMessage {
   padding: 10%;
-  min-width: 100px;
 }
 
 .dismiss {

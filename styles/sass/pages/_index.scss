@@ -10,13 +10,13 @@
 }
 
 .alertBox {
-    background-color: red;
     padding: 10% 2%;
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
     border: 6px black solid;
+    min-width: 12rem;
 }
 
 form {
@@ -29,7 +29,6 @@ form {
 
 .alertMessage {
     padding: 10%;
-    min-width: 100px;
 }
 
 .dismiss {
