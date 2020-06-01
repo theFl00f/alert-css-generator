@@ -15,8 +15,24 @@ const $alertBox = $('.alertBox');
 const $alertButton = $('.dismiss');
 const $alertMessage = $('#alertMessage')
 const $alertMessageOut = $('.alertMessage');
+const $alertBorderColor = $('#alertBoxBorderColor')
 const $forms = $('form')
 
+
+getFontFamily = (element) => {
+    element.removeClass('lato montserrat raleway roboto').addClass($fontFamilySelection.val())
+}
+
+changeColor = (target, property, source) => {
+    target.css(property, source.val())
+}
+
+getMessage = () => {
+    $alertMessageOut.text( $alertMessage.val() ) 
+    if ($alertMessage.val() === '') {
+        $alertMessageOut.css('padding', '0')
+    }
+}
 
 $forms.on('submit', (e) => {
     e.preventDefault()
@@ -26,33 +42,27 @@ $fontFamilySelection.on('change', () => {
     getFontFamily($alertBox)
 })
 
-getFontFamily = (element) => {
-        element.removeClass('lato montserrat raleway roboto').addClass($fontFamilySelection.val())
-}
-
 $alertColor.on('change', () => {
-    getAlertColor()
+    changeColor($alertBox, 'backgroundColor', $alertColor)
 })
-
-getAlertColor = () => {
-    $alertBox.css('backgroundColor', $alertColor.val())
-}
 
 $alertMessage.on('keyup', () => {
     getMessage();
 })
 
+$alertBorderColor.on('change', () => {
+    console.log($alertBorderColor)
+    changeColor($alertBox, 'borderColor', $alertBorderColor)
+})
 
-getMessage = () => {
-    $alertMessageOut.text( $alertMessage.val() ) 
-    if ($alertMessage.val() === '') {
-        $alertMessageOut.css('padding', '0')
-    }
-}
+
+
+
 
 getPrev = () => {
     getFontFamily($alertBox)
-    getAlertColor()
+    changeColor($alertBox, 'backgroundColor', $alertColor)
+    changeColor($alertBox, 'borderColor', $alertBorderColor)
     getMessage()
 }
 
