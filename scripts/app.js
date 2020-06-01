@@ -22,6 +22,7 @@ const $alertWidth = $('#alertBoxPaddingX');
 const $alertHeight = $('#alertBoxPaddingY');
 const $alertBorderWidth = $('#alertBoxBorderWidth');
 const $alertBorderRadius = $('#alertBoxBorderRadius');
+const $alertMessagePadding = $('#alertMessagePadding')
 
 getFontFamily = (element) => {
     element.removeClass('lato montserrat raleway roboto').addClass($fontFamilySelection.val())
@@ -84,6 +85,13 @@ $alertBorderRadius.on('input', () => {
     changeUnit($alertBox, 'borderRadius', $alertBorderRadius)
 })
 
+$alertMessagePadding.on('input', () => {
+    changeUnit($alertMessageOut, 'paddingTop', $alertMessagePadding)
+    changeUnit($alertMessageOut, 'paddingBottom', $alertMessagePadding)
+
+})
+
+
 
 getPrev = () => {
     getFontFamily($alertBox);
@@ -94,7 +102,8 @@ getPrev = () => {
     changeUnit($alertBox, 'minHeight', $alertHeight)
     changeUnit($alertBox, 'borderWidth', $alertBorderWidth)
     changeUnit($alertBox, 'borderRadius', $alertBorderRadius)
-
+    changeUnit($alertMessageOut, 'paddingTop', $alertMessagePadding)
+    changeUnit($alertMessageOut, 'paddingBottom', $alertMessagePadding)
     getMessage();
 }
 
