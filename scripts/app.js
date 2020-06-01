@@ -37,6 +37,11 @@ changeUnit = (target, property, source) => {
     //stretch: add variable for unit input
 }
 
+changeMessagePadding = () => {
+    changeUnit($alertMessageOut, 'paddingTop', $alertMessagePadding)
+    changeUnit($alertMessageOut, 'paddingBottom', $alertMessagePadding)
+}
+
 getMessage = () => {
     $alertMessageOut.text( $alertMessage.val() ) 
     if ($alertMessage.val() === '') {
@@ -58,6 +63,7 @@ $alertColor.on('input', () => {
 
 $alertMessage.on('keyup', () => {
     getMessage();
+    changeMessagePadding();
 })
 
 $alertBorderColor.on('input', () => {
@@ -86,9 +92,7 @@ $alertBorderRadius.on('input', () => {
 })
 
 $alertMessagePadding.on('input', () => {
-    changeUnit($alertMessageOut, 'paddingTop', $alertMessagePadding)
-    changeUnit($alertMessageOut, 'paddingBottom', $alertMessagePadding)
-
+    changeMessagePadding()
 })
 
 
@@ -102,9 +106,8 @@ getPrev = () => {
     changeUnit($alertBox, 'minHeight', $alertHeight)
     changeUnit($alertBox, 'borderWidth', $alertBorderWidth)
     changeUnit($alertBox, 'borderRadius', $alertBorderRadius)
-    changeUnit($alertMessageOut, 'paddingTop', $alertMessagePadding)
-    changeUnit($alertMessageOut, 'paddingBottom', $alertMessagePadding)
     getMessage();
+    changeMessagePadding();
 }
 
 $( document ).ready(() => {
