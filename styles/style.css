@@ -297,3 +297,11 @@ form {
 .roboto {
   font-family: 'Roboto', sans-serif;
 }
+
+nav button {
+  background-color: gray;
+}
+
+nav button.active {
+  background-color: #e6e6e6;
+}

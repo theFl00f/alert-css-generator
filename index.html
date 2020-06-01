@@ -14,6 +14,11 @@
 <body>
     <div class="wrapper">
         <article class="inputBox">
+            <nav>
+                <button id="alertBoxForm" class="active">Alert Box</button>
+                <button id="buttonForm">Buttons</button>
+                <button id="codeOutput">Output</button>
+            </nav>
             <form id="alertBoxStyles">
                 <label for="fontFamily">Font family?</label>
                 <select name="fontFamily" id="fontFamily">
@@ -43,7 +48,11 @@
                 <input type="color" name="alertMessageColor" id="alertMessageColor" value="#ffc1e7">
             </form>
             <form id="buttonStyles">
-                
+                <label for="buttonText1">Dismiss text:</label>
+                <input type="text" id="buttonText1" value="ok">
+            </form>
+            <form id="codeOutputForm">
+                <textarea name="code" id="code" cols="30" rows="10"></textarea>
             </form>
         </article>
         <article class="outputBox">

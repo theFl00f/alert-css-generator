@@ -18,11 +18,17 @@ const $alertMessageOut = $('.alertMessage');
 const $alertMessageColor = $('#alertMessageColor');
 const $alertBorderColor = $('#alertBoxBorderColor');
 const $forms = $('form');
+const $alertBoxForm = $('#alertBoxStyles');
+const $buttonForm = $('#buttonStyles');
+const $outputForm = $('#codeOutputForm');
 const $alertWidth = $('#alertBoxPaddingX');
 const $alertHeight = $('#alertBoxPaddingY');
 const $alertBorderWidth = $('#alertBoxBorderWidth');
 const $alertBorderRadius = $('#alertBoxBorderRadius');
-const $alertMessagePadding = $('#alertMessagePadding')
+const $alertMessagePadding = $('#alertMessagePadding');
+const $navButton = $('nav button');
+const $boxNavButton = $('#alertBoxForm');
+const $buttonNavButton = $('#buttonForm');
 
 getFontFamily = (element) => {
     element.removeClass('lato montserrat raleway roboto').addClass($fontFamilySelection.val())
@@ -95,6 +101,27 @@ $alertMessagePadding.on('input', () => {
     changeMessagePadding()
 })
 
+$navButton.on('click', function(e) {
+    e.preventDefault();
+    $navButton.removeClass('active');
+    $(this).addClass('active');
+    getCurrentForm()
+})
+
+getCurrentForm = () => {
+    $forms.hide();
+    if ($boxNavButton.hasClass('active')) {
+        $alertBoxForm.show();
+        console.log('show')
+    } 
+    else if ($buttonNavButton.hasClass('active')) {
+        $buttonForm.show();
+    }
+    else {        
+        $outputForm.show();
+    }
+}
+
 
 
 getPrev = () => {
@@ -111,7 +138,8 @@ getPrev = () => {
 }
 
 $( document ).ready(() => {
-    getPrev()
+    getPrev();
+    getCurrentForm();
 })
 
 //going to need a foreach for the inputs to add event listeners for each input in a functional way

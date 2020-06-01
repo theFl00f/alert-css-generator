@@ -51,3 +51,10 @@ form {
 .roboto {
     font-family: 'Roboto', sans-serif;
 }
+
+nav button {
+    background-color: gray;
+    &.active {
+        background-color: lighten($color: gray, $amount: 40%);
+    }
+}
