@@ -52,7 +52,7 @@ $fontFamilySelection.on('change', () => {
     getFontFamily($alertBox)
 })
 
-$alertColor.on('change', () => {
+$alertColor.on('input', () => {
     changeColor($alertBox, 'backgroundColor', $alertColor)
 })
 
@@ -60,11 +60,11 @@ $alertMessage.on('keyup', () => {
     getMessage();
 })
 
-$alertBorderColor.on('change', () => {
+$alertBorderColor.on('input', () => {
     changeColor($alertBox, 'borderColor', $alertBorderColor)
 })
 
-$alertMessageColor.on('change', () => {
+$alertMessageColor.on('input', () => {
     changeColor($alertMessageOut, 'color', $alertMessageColor)
 })
 
