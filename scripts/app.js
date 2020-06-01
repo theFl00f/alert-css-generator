@@ -19,7 +19,9 @@ const $alertMessageColor = $('#alertMessageColor');
 const $alertBorderColor = $('#alertBoxBorderColor');
 const $forms = $('form');
 const $alertWidth = $('#alertBoxPaddingX');
-const $alertHeight = $('#alertBoxPaddingY')
+const $alertHeight = $('#alertBoxPaddingY');
+const $alertBorderWidth = $('#alertBoxBorderWidth');
+const $alertBorderRadius = $('#alertBoxBorderRadius');
 
 getFontFamily = (element) => {
     element.removeClass('lato montserrat raleway roboto').addClass($fontFamilySelection.val())
@@ -31,7 +33,7 @@ changeColor = (target, property, source) => {
 
 changeUnit = (target, property, source) => {
     target.css(property, `${source.val()}rem`)
-
+    //stretch: add variable for unit input
 }
 
 getMessage = () => {
@@ -74,12 +76,25 @@ $alertHeight.on('input', () => {
     changeUnit($alertBox, 'minHeight', $alertHeight)
 })
 
+$alertBorderWidth.on('input', () => {
+    changeUnit($alertBox, 'borderWidth', $alertBorderWidth)
+})
+
+$alertBorderRadius.on('input', () => {
+    changeUnit($alertBox, 'borderRadius', $alertBorderRadius)
+})
+
 
 getPrev = () => {
     getFontFamily($alertBox);
     changeColor($alertBox, 'backgroundColor', $alertColor);
     changeColor($alertBox, 'borderColor', $alertBorderColor);
     changeColor($alertMessageOut, 'color', $alertMessageColor);
+    changeUnit($alertBox, 'minWidth', $alertWidth)
+    changeUnit($alertBox, 'minHeight', $alertHeight)
+    changeUnit($alertBox, 'borderWidth', $alertBorderWidth)
+    changeUnit($alertBox, 'borderRadius', $alertBorderRadius)
+
     getMessage();
 }
 
