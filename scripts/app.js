@@ -29,6 +29,14 @@ const $alertMessagePadding = $('#alertMessagePadding');
 const $navButton = $('nav button');
 const $boxNavButton = $('#alertBoxForm');
 const $buttonNavButton = $('#buttonForm');
+const $dismissButtonText = $('#buttonText1');
+const $dismissButton = $('.dismiss');
+const $buttonWidth = $('#buttonWidth');
+const $buttonHeight = $('#buttonHeight');
+const $buttonBgColor = $('#buttonBgColor');
+const $buttonBorderWidth = $('#buttonBorderWidth');
+const $buttonBorderRadius = $('#buttonBorderRadius');
+const $buttonBorderColor = $('#buttonBorderColor')
 
 getFontFamily = (element) => {
     element.removeClass('lato montserrat raleway roboto').addClass($fontFamilySelection.val())
@@ -48,12 +56,27 @@ changeMessagePadding = () => {
     changeUnit($alertMessageOut, 'paddingBottom', $alertMessagePadding)
 }
 
-getMessage = () => {
-    $alertMessageOut.text( $alertMessage.val() ) 
-    if ($alertMessage.val() === '') {
-        $alertMessageOut.css('padding', '0')
+getMessage = ( target, source ) => {
+    target.text( source.val() ) 
+    if (source.val() === '') {
+        target.css('padding', '0')
     }
 }
+
+getCurrentForm = () => {
+    $forms.hide();
+    if ($boxNavButton.hasClass('active')) {
+        $alertBoxForm.show();
+        console.log('show')
+    } 
+    else if ($buttonNavButton.hasClass('active')) {
+        $buttonForm.show();
+    }
+    else {        
+        $outputForm.show();
+    }
+}
+
 
 $forms.on('submit', (e) => {
     e.preventDefault()
@@ -68,7 +91,7 @@ $alertColor.on('input', () => {
 })
 
 $alertMessage.on('input', () => {
-    getMessage();
+    getMessage($alertMessageOut, $alertMessage);
     changeMessagePadding();
 })
 
@@ -108,32 +131,51 @@ $navButton.on('click', function(e) {
     getCurrentForm()
 })
 
-getCurrentForm = () => {
-    $forms.hide();
-    if ($boxNavButton.hasClass('active')) {
-        $alertBoxForm.show();
-        console.log('show')
-    } 
-    else if ($buttonNavButton.hasClass('active')) {
-        $buttonForm.show();
-    }
-    else {        
-        $outputForm.show();
-    }
-}
+$dismissButtonText.on('input', () => {
+    getMessage($dismissButton, $dismissButtonText);
+})
 
+$buttonHeight.on('input', () => {
+    changeUnit($dismissButton, 'minHeight', $buttonHeight)
+})
 
+$buttonWidth.on('input', () => {
+    changeUnit($dismissButton, 'width', $buttonWidth)
+})
+
+$buttonBgColor.on('input', () => {
+    changeColor($dismissButton, 'backgroundColor', $buttonBgColor)
+})
+
+$buttonBorderWidth.on('input', () => {
+    changeUnit($dismissButton, 'borderWidth', $buttonBorderWidth)
+})
+
+$buttonBorderRadius.on('input', () => {
+    changeUnit($dismissButton, 'borderRadius', $buttonBorderRadius)
+})
+
+$buttonBorderColor.on('input', () => {
+    changeColor($dismissButton, 'borderColor', $buttonBorderColor)
+})
 
 getPrev = () => {
     getFontFamily($alertBox);
     changeColor($alertBox, 'backgroundColor', $alertColor);
     changeColor($alertBox, 'borderColor', $alertBorderColor);
     changeColor($alertMessageOut, 'color', $alertMessageColor);
-    changeUnit($alertBox, 'minWidth', $alertWidth)
+    changeUnit($alertBox, 'width', $alertWidth)
     changeUnit($alertBox, 'minHeight', $alertHeight)
     changeUnit($alertBox, 'borderWidth', $alertBorderWidth)
     changeUnit($alertBox, 'borderRadius', $alertBorderRadius)
-    getMessage();
+    getMessage($alertMessageOut, $alertMessage);
+    getMessage($dismissButton, $dismissButtonText);
+    changeUnit($dismissButton, 'minHeight', $buttonHeight)
+    changeUnit($dismissButton, 'width', $buttonWidth)
+    changeColor($dismissButton, 'backgroundColor', $buttonBgColor)
+    changeUnit($dismissButton, 'borderWidth', $buttonBorderWidth)
+    changeUnit($dismissButton, 'borderRadius', $buttonBorderRadius)
+    changeColor($dismissButton, 'borderColor', $buttonBorderColor)
     changeMessagePadding();
 }
 

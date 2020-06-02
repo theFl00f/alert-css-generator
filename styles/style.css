@@ -280,6 +280,7 @@ form {
 
 .dismiss {
   color: firebrick;
+  border: 6px black solid;
 }
 
 .lato {

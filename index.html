@@ -50,6 +50,18 @@
             <form id="buttonStyles">
                 <label for="buttonText1">Dismiss text:</label>
                 <input type="text" id="buttonText1" value="ok">
+                <label for="buttonHeight">Button height: </label>
+                <input type="range" name="buttonHeight" id="buttonHeight" max="10" min="1" value="2.5" step="0.5">
+                <label for="buttonWidth">Button width: </label>
+                <input type="range" name="buttonWidth" id="buttonWidth" max="40" min="1" value="9">
+                <label for="buttonBgColor">Button background: </label>
+                <input type="color" name="buttonBgColor" id="buttonBgColor" value="#d6ce82">
+                <label for="buttonBorderWidth">Button border width: </label>
+                <input type="range" name="buttonBorderWidth" id="buttonBorderWidth" min="0" max="1" step="0.1" value=".5">
+                <label for="buttonBorderRadius">Button border radius: </label>
+                <input type="range" name="buttonBorderRadius" id="buttonBorderRadius" min="0" max="5" value="0.5" step="0.5">
+                <label for="buttonBorderColor"></label>
+                <input type="color" name="buttonBorderColor" id="buttonBorderColor" value="#ffc1e7">
             </form>
             <form id="codeOutputForm">
                 <textarea name="code" id="code" cols="30" rows="10"></textarea>
