@@ -265,7 +265,6 @@ body {
 }
 
 form {
-  background-color: gainsboro;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -274,6 +273,12 @@ form {
       -ms-flex-direction: column;
           flex-direction: column;
   text-align: center;
+}
+
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .dismiss {
@@ -294,12 +299,4 @@ form {
 
 .roboto {
   font-family: 'Roboto', sans-serif;
-}
-
-nav button {
-  background-color: gray;
-}
-
-nav button.active {
-  background-color: #e6e6e6;
 }

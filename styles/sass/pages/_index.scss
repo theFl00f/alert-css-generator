@@ -19,12 +19,14 @@
 }
 
 form {
-    background-color: gainsboro;
     display: flex;
     flex-direction: column;
     text-align: center;
 }
 
+nav {
+    display: flex;
+}
 
 
 
@@ -48,9 +50,3 @@ form {
     font-family: 'Roboto', sans-serif;
 }
 
-nav button {
-    background-color: gray;
-    &.active {
-        background-color: lighten($color: gray, $amount: 40%);
-    }
-}

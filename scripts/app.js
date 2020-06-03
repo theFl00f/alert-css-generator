@@ -39,7 +39,7 @@ const $buttonBorderWidth = $('#buttonBorderWidth');
 const $buttonBorderRadius = $('#buttonBorderRadius');
 const $buttonBorderColor = $('#buttonBorderColor');
 const $buttonTextColor = $('#buttonTextColor');
-const $outputTextarea = $('textarea')
+const $outputTextarea = $('#codeOutputForm textarea')
 
 
 
@@ -74,7 +74,6 @@ getCurrentForm = () => {
     $forms.hide();
     if ($boxNavButton.hasClass('active')) {
         $alertBoxForm.show();
-        console.log('show')
     } 
     else if ($buttonNavButton.hasClass('active')) {
         $buttonForm.show();
@@ -94,8 +93,8 @@ $forms.on('submit', (e) => {
 
 $navButton.on('click', function(e) {
     e.preventDefault();
-    $navButton.removeClass('active');
-    $(this).addClass('active');
+    $navButton.removeClass('active btn-primary').addClass('btn btn-secondary');
+    $(this).removeClass('btn btn-primary btn-secondary').addClass('active btn btn-primary');
     getCurrentForm()
 })
 
