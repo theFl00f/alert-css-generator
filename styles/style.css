@@ -239,6 +239,10 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   max-width: 1300px;
   width: 90%;
   margin: 0 auto;
@@ -246,7 +250,6 @@ body {
 }
 
 .alertBox {
-  padding: 10% 2%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -259,7 +262,6 @@ body {
       -ms-flex-align: center;
           align-items: center;
   border: 6px black solid;
-  min-width: 12rem;
 }
 
 form {
@@ -274,12 +276,7 @@ form {
   text-align: center;
 }
 
-.alertMessage {
-  padding: 10%;
-}
-
 .dismiss {
-  color: firebrick;
   border: 6px black solid;
 }
 

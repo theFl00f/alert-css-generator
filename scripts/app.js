@@ -29,6 +29,7 @@ const $alertMessagePadding = $('#alertMessagePadding');
 const $navButton = $('nav button');
 const $boxNavButton = $('#alertBoxForm');
 const $buttonNavButton = $('#buttonForm');
+const $outputButton = $('#codeOutput')
 const $dismissButtonText = $('#buttonText1');
 const $dismissButton = $('.dismiss');
 const $buttonWidth = $('#buttonWidth');
@@ -36,7 +37,13 @@ const $buttonHeight = $('#buttonHeight');
 const $buttonBgColor = $('#buttonBgColor');
 const $buttonBorderWidth = $('#buttonBorderWidth');
 const $buttonBorderRadius = $('#buttonBorderRadius');
-const $buttonBorderColor = $('#buttonBorderColor')
+const $buttonBorderColor = $('#buttonBorderColor');
+const $buttonTextColor = $('#buttonTextColor');
+const $outputTextarea = $('textarea')
+
+
+
+
 
 getFontFamily = (element) => {
     element.removeClass('lato montserrat raleway roboto').addClass($fontFamilySelection.val())
@@ -52,8 +59,8 @@ changeUnit = (target, property, source) => {
 }
 
 changeMessagePadding = () => {
-    changeUnit($alertMessageOut, 'paddingTop', $alertMessagePadding)
-    changeUnit($alertMessageOut, 'paddingBottom', $alertMessagePadding)
+    changeUnit($alertMessageOut, 'padding-top', $alertMessagePadding)
+    changeUnit($alertMessageOut, 'padding-bottom', $alertMessagePadding)
 }
 
 getMessage = ( target, source ) => {
@@ -78,50 +85,11 @@ getCurrentForm = () => {
 }
 
 
+
+
+
 $forms.on('submit', (e) => {
     e.preventDefault()
-})
-
-$fontFamilySelection.on('change', () => {
-    getFontFamily($alertBox)
-})
-
-$alertColor.on('input', () => {
-    changeColor($alertBox, 'backgroundColor', $alertColor)
-})
-
-$alertMessage.on('input', () => {
-    getMessage($alertMessageOut, $alertMessage);
-    changeMessagePadding();
-})
-
-$alertBorderColor.on('input', () => {
-    changeColor($alertBox, 'borderColor', $alertBorderColor)
-})
-
-$alertMessageColor.on('input', () => {
-    changeColor($alertMessageOut, 'color', $alertMessageColor)
-})
-
-$alertWidth.on('input', () => {
-    console.log($alertWidth.val())
-    changeUnit($alertBox, 'minWidth', $alertWidth)
-})
-
-$alertHeight.on('input', () => {
-    changeUnit($alertBox, 'minHeight', $alertHeight)
-})
-
-$alertBorderWidth.on('input', () => {
-    changeUnit($alertBox, 'borderWidth', $alertBorderWidth)
-})
-
-$alertBorderRadius.on('input', () => {
-    changeUnit($alertBox, 'borderRadius', $alertBorderRadius)
-})
-
-$alertMessagePadding.on('input', () => {
-    changeMessagePadding()
 })
 
 $navButton.on('click', function(e) {
@@ -131,12 +99,96 @@ $navButton.on('click', function(e) {
     getCurrentForm()
 })
 
+
+$outputButton.on('click', () => {
+    let dismissObject;
+
+    const alertBoxCss = $alertBox.css(['background-color', 'border-color', 'color', 'width', 'height', 'border-width', 'border-radius'])
+
+    const alertMessageCss = $alertMessageOut.css(['padding-top', 'padding-bottom'])
+
+    const alertButtonCss = $dismissButton.css(['min-height', 'width', 'background-color', 'border-width', 'border-radius', 'border-color', 'color', 'border-style'])
+    
+    // console.log(alertBoxCss, alertMessageCss, alertButtonCss)
+    const dismissButton = document.getElementsByClassName('dismiss')
+    const dismissButtonCopy = [...dismissButton]
+
+
+    dismissButtonCopy.forEach(element => {
+        const computedStyle = getComputedStyle(element)
+        const dismissObject = {
+            'min-height': computedStyle.minHeight, 
+            'width': computedStyle.width, 
+            'background-color': computedStyle.backgroundColor, 
+            'border-width': computedStyle.borderTopWidth, 
+            'border-radius': computedStyle.borderTopRightRadius, 
+            'border-style': computedStyle['border-inline-start-style'], 
+            'color': computedStyle.color
+        } 
+        $outputTextarea.text(`
+        //styles
+        button ${JSON.stringify(dismissObject, null, '\t')}
+        `)
+    });
+
+})
+
+
+
+
+$fontFamilySelection.on('change', () => {
+    getFontFamily($alertBox)
+})
+
+$alertColor.on('input', () => {
+    changeColor($alertBox, 'background-color', $alertColor)
+})
+
+$alertMessage.on('input', () => {
+    getMessage($alertMessageOut, $alertMessage);
+    changeMessagePadding();
+})
+
+$alertBorderColor.on('input', () => {
+    changeColor($alertBox, 'border-color', $alertBorderColor)
+})
+
+$alertMessageColor.on('input', () => {
+    changeColor($alertMessageOut, 'color', $alertMessageColor)
+})
+
+$alertWidth.on('input', () => {
+    console.log($alertWidth.val())
+    changeUnit($alertBox, 'width', $alertWidth)
+})
+
+$alertHeight.on('input', () => {
+    changeUnit($alertBox, 'height', $alertHeight)
+})
+
+$alertBorderWidth.on('input', () => {
+    changeUnit($alertBox, 'border-width', $alertBorderWidth)
+})
+
+$alertBorderRadius.on('input', () => {
+    changeUnit($alertBox, 'border-radius', $alertBorderRadius)
+})
+
+$alertMessagePadding.on('input', () => {
+    changeMessagePadding()
+})
+
+
+
+
+
+
 $dismissButtonText.on('input', () => {
     getMessage($dismissButton, $dismissButtonText);
 })
 
 $buttonHeight.on('input', () => {
-    changeUnit($dismissButton, 'minHeight', $buttonHeight)
+    changeUnit($dismissButton, 'min-height', $buttonHeight)
 })
 
 $buttonWidth.on('input', () => {
@@ -144,39 +196,47 @@ $buttonWidth.on('input', () => {
 })
 
 $buttonBgColor.on('input', () => {
-    changeColor($dismissButton, 'backgroundColor', $buttonBgColor)
+    changeColor($dismissButton, 'background-color', $buttonBgColor)
 })
 
 $buttonBorderWidth.on('input', () => {
-    changeUnit($dismissButton, 'borderWidth', $buttonBorderWidth)
+    changeUnit($dismissButton, 'border-width', $buttonBorderWidth)
 })
 
 $buttonBorderRadius.on('input', () => {
-    changeUnit($dismissButton, 'borderRadius', $buttonBorderRadius)
+    changeUnit($dismissButton, 'border-radius', $buttonBorderRadius)
 })
 
 $buttonBorderColor.on('input', () => {
-    changeColor($dismissButton, 'borderColor', $buttonBorderColor)
+    changeColor($dismissButton, 'border-color', $buttonBorderColor)
 })
+
+$buttonTextColor.on('input', () => {
+    changeColor($dismissButton, 'color', $buttonTextColor)
+})
+
 
 getPrev = () => {
     getFontFamily($alertBox);
-    changeColor($alertBox, 'backgroundColor', $alertColor);
-    changeColor($alertBox, 'borderColor', $alertBorderColor);
+    changeColor($alertBox, 'background-color', $alertColor);
+    changeColor($alertBox, 'border-color', $alertBorderColor);
     changeColor($alertMessageOut, 'color', $alertMessageColor);
     changeUnit($alertBox, 'width', $alertWidth)
-    changeUnit($alertBox, 'minHeight', $alertHeight)
-    changeUnit($alertBox, 'borderWidth', $alertBorderWidth)
-    changeUnit($alertBox, 'borderRadius', $alertBorderRadius)
+    changeUnit($alertBox, 'height', $alertHeight)
+    changeUnit($alertBox, 'border-width', $alertBorderWidth)
+    changeUnit($alertBox, 'border-radius', $alertBorderRadius)
     getMessage($alertMessageOut, $alertMessage);
     getMessage($dismissButton, $dismissButtonText);
-    changeUnit($dismissButton, 'minHeight', $buttonHeight)
+    changeUnit($dismissButton, 'min-height', $buttonHeight)
     changeUnit($dismissButton, 'width', $buttonWidth)
-    changeColor($dismissButton, 'backgroundColor', $buttonBgColor)
-    changeUnit($dismissButton, 'borderWidth', $buttonBorderWidth)
-    changeUnit($dismissButton, 'borderRadius', $buttonBorderRadius)
-    changeColor($dismissButton, 'borderColor', $buttonBorderColor)
+    changeColor($dismissButton, 'background-color', $buttonBgColor)
+    changeUnit($dismissButton, 'border-width', $buttonBorderWidth)
+    changeUnit($dismissButton, 'border-radius', $buttonBorderRadius)
+    changeColor($dismissButton, 'border-color', $buttonBorderColor);
+    changeColor($dismissButton, 'color', $buttonTextColor);
     changeMessagePadding();
+
+
 }
 
 $( document ).ready(() => {
