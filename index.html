@@ -16,15 +16,15 @@
     <div class="wrapper container-fluid">
         <article class="inputBox montserrat container-fluid pt-5">
             <nav class="btn-group btn-group-lg">
-                <button id="alertBoxForm" class="active btn btn-primary">Alert Box</button>
-                <button id="buttonForm" class="btn btn-secondary">Buttons</button>
-                <button id="codeOutput" class="btn btn-secondary">Output</button>
+                <button id="alertBoxForm" class="active btn btn-dark">Alert Box</button>
+                <button id="buttonForm" class="btn btn-light">Buttons</button>
+                <button id="codeOutput" class="btn btn-light">Output</button>
             </nav>
-            <form id="alertBoxStyles" class="bg-secondary pl-5 pr-5 rounded-bottom">
+            <form id="alertBoxStyles" class="bg-dark pl-5 pr-5 rounded-bottom">
                 <!-- allow for class name input here -->
-                <div class="form-group pt-3">
-                    <label for="fontFamily">Font family?</label>
-                    <select class="custom-select mt-1" name="fontFamily" id="fontFamily">
+                <div class="form-group pt-3 row">
+                    <label for="fontFamily" class="col text-light">Font family?</label>
+                    <select class="custom-select mt-1 col" name="fontFamily" id="fontFamily">
                         <option value="none" selected>None</option>
                         <option value="roboto">Roboto</option>
                         <option value="montserrat">Montserrat</option>
@@ -32,88 +32,87 @@
                         <option value="raleway">Raleway</option>
                     </select>
                 </div>
-                <div class="form-group ">
-                    <label for="alertMessage">alert message? leave empty if no message.</label>
-                    <textarea name="alertMessage" id="alertMessage" class="form-control mt-1"></textarea>
+                <div class="form-group row">
+                    <label for="alertMessage" class="col text-light">alert message? leave empty if no message.</label>
+                    <textarea name="alertMessage" id="alertMessage" class="form-control mt-1 col"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="alertBoxPaddingX">Alert box width:</label>
-                    <input type="range" name="alertBoxPaddingX" id="alertBoxPaddingX" min="12" max="50" value="12" class="custom-range mt-1">
+                <div class="form-group row">
+                    <label for="alertBoxPaddingX" class="col text-light">Alert box width:</label>
+                    <input type="range" name="alertBoxPaddingX" id="alertBoxPaddingX" min="12" max="50" value="12" class="custom-range mt-1 col">
                 </div>
-                <div class="form-group">
-                    <label for="alertBoxPaddingY">Alert box height:</label>
-                    <input type="range" name="alertBoxPaddingY" id="alertBoxPaddingY" min="9" max="30" value="9" class="custom-range mt-1">
+                <div class="form-group row">
+                    <label for="alertBoxPaddingY" class="col text-light">Alert box height:</label>
+                    <input type="range" name="alertBoxPaddingY" id="alertBoxPaddingY" min="9" max="30" value="9" class="custom-range mt-1 col">
                 </div>
-                <div class="form-group">
-                    <label for="alertBoxColor">Alert box color:</label>
-                    <input type="color" name="alertBoxColor" id="alertBoxColor" value="#305492" class="form-control mt-1">
+                <div class="form-group row">
+                    <label for="alertBoxColor" class="col text-light">Alert box color:</label>
+                    <input type="color" name="alertBoxColor" id="alertBoxColor" value="#305492" class="form-control mt-1 col">
                 </div>
-                <div class="form-group">
-                    <label for="alertBoxBorderRadius">Border radius:</label>
-                    <input type="range" name="alertBoxBorderRadius" id="alertBoxBorderRadius" min="0" max="10" value="0.75" step="0.25" class="custom-range mt-1">
+                <div class="form-group row">
+                    <label for="alertBoxBorderRadius" class="col text-light">Border radius:</label>
+                    <input type="range" name="alertBoxBorderRadius" id="alertBoxBorderRadius" min="0" max="10" value="0.75" step="0.25" class="custom-range mt-1 col">
                 </div>
-                <div class="form-group">
-                    <label for="alertBoxBorderWidth">Border width:</label>
-                    <input type="range" name="alertBoxBorderWidth" id="alertBoxBorderWidth" min="0.0" max="4.0" step="0.1" value="0" class="custom-range mt-1">
+                <div class="form-group row">
+                    <label for="alertBoxBorderWidth" class="col text-light">Border width:</label>
+                    <input type="range" name="alertBoxBorderWidth" id="alertBoxBorderWidth" min="0.0" max="4.0" step="0.1" value="0" class="custom-range mt-1 col">
                 </div>
-                <div class="form-group">
-                    <label for="alertBoxBorderColor">Alert border color:</label>
-                    <input type="color" name="alertBoxBorderColor" id="alertBoxBorderColor" value="#d6ce82" class="form-control mt-1">
+                <div class="form-group row">
+                    <label for="alertBoxBorderColor" class="col text-light">Alert border color:</label>
+                    <input type="color" name="alertBoxBorderColor" id="alertBoxBorderColor" value="#d6ce82" class="form-control mt-1 col">
                 </div>
-                <div class="form-group">
-
+                <div class="form-group row">
                     <!-- break into 2 different sliders -->
-                    <label for="alertMessagePadding">Alert message padding:</label>
-                    <input type="range" name="alertMessagePadding" id="alertMessagePadding" max="8" min="1" value="1.75" step="0.25" class="custom-range mt-1">
+                    <label for="alertMessagePadding" class="col text-light">Alert message padding:</label>
+                    <input type="range" name="alertMessagePadding" id="alertMessagePadding" max="8" min="1" value="1.75" step="0.25" class="custom-range mt-1 col">
                 </div>
-                <div class="form-group">
-                    <label for="alertMessageColor">Alert message color:</label>
-                    <input type="color" name="alertMessageColor" id="alertMessageColor" value="#ffc1e7" class="form-control mt-1">
+                <div class="form-group row">
+                    <label for="alertMessageColor" class="col text-light">Alert message color:</label>
+                    <input type="color" name="alertMessageColor" id="alertMessageColor" value="#ffc1e7" class="form-control mt-1 col">
                 </div>
             </form>
-            <form id="buttonStyles" class="bg-secondary pl-5 pr-5 d-none">
+            <form id="buttonStyles" class="bg-dark pl-5 pr-5 d-none">
                 <!-- allow for class name input here -->
-                <div class="form-group pt-3">
-                    <label for="buttonText1">Dismiss text:</label>
-                    <input type="text" id="buttonText1" value="ok" class="form-control mt-1">
+                <div class="form-group pt-3 row">
+                    <label for="buttonText1" class="col text-light">Dismiss text:</label>
+                    <input type="text" id="buttonText1" value="ok" class="form-control mt-1 col">
                 </div>
-                <div class="form-group">
-                    <label for="buttonHeight">Button height: </label>
-                    <input type="range" name="buttonHeight" id="buttonHeight" max="10" min="1" value="2.5" step="0.5" class="custom-range mt-1">
+                <div class="form-group row">
+                    <label for="buttonHeight" class="col text-light">Button height: </label>
+                    <input type="range" name="buttonHeight" id="buttonHeight" max="10" min="1" value="2.5" step="0.5" class="custom-range mt-1 col">
                 </div>
-                <div class="form-group">
-                    <label for="buttonWidth">Button width: </label>
-                    <input type="range" name="buttonWidth" id="buttonWidth" max="40" min="1" value="9" class="custom-range mt-1">
+                <div class="form-group row">
+                    <label for="buttonWidth" class="col text-light">Button width: </label>
+                    <input type="range" name="buttonWidth" id="buttonWidth" max="40" min="1" value="9" class="custom-range mt-1 col">
                 </div>
-                <div class="form-group">
-                    <label for="buttonBgColor">Button background: </label>
-                    <input type="color" name="buttonBgColor" id="buttonBgColor" value="#ffc1e7" class="form-control mt-1">
+                <div class="form-group row">
+                    <label for="buttonBgColor" class="col text-light">Button background: </label>
+                    <input type="color" name="buttonBgColor" id="buttonBgColor" value="#ffc1e7" class="form-control mt-1 col">
                 </div>
-                <div class="form-group">
-                    <label for="buttonBorderWidth">Button border width: </label>
-                    <input type="range" name="buttonBorderWidth" id="buttonBorderWidth" min="0" max="1" step="0.1" value="0" class="custom-range mt-1">
+                <div class="form-group row">
+                    <label for="buttonBorderWidth" class="col text-light">Button border width: </label>
+                    <input type="range" name="buttonBorderWidth" id="buttonBorderWidth" min="0" max="1" step="0.1" value="0" class="custom-range mt-1 col">
                 </div>
-                <div class="form-group">
-                    <label for="buttonBorderRadius">Button border radius: </label>
-                    <input type="range" name="buttonBorderRadius" id="buttonBorderRadius" min="0" max="5" value="0.5" step="0.5" class="custom-range mt-1">
+                <div class="form-group row">
+                    <label for="buttonBorderRadius" class="col text-light">Button border radius: </label>
+                    <input type="range" name="buttonBorderRadius" id="buttonBorderRadius" min="0" max="5" value="0.5" step="0.5" class="custom-range mt-1 col">
                 </div>
-                <div class="form-group">
-                    <label for="buttonBorderColor"></label>
-                    <input type="color" name="buttonBorderColor" id="buttonBorderColor" value="#d6ce82" class="form-control mt-1">
+                <div class="form-group row">
+                    <label for="buttonBorderColor" class="col text-light">Button border color: </label>
+                    <input type="color" name="buttonBorderColor" id="buttonBorderColor" value="#d6ce82" class="form-control mt-1 col">
                 </div>
-                <div class="form-group">
-                    <label for="buttonTextColor"></label>
-                    <input type="color" name="buttonTextColor" id="buttonTextColor" value="#305492" class="form-control mt-1">
+                <div class="form-group row">
+                    <label for="buttonTextColor" class="col text-light">Button text color: </label>
+                    <input type="color" name="buttonTextColor" id="buttonTextColor" value="#305492" class="form-control mt-1 col">
                 </div>
             </form>
-            <form id="codeOutputForm" class="bg-secondary pl-5 pr-5 d-none">
+            <form id="codeOutputForm" class="bg-dark pl-5 pr-5 d-none">
                 <div class="form-group pt-3">
-                    <label for="code">Output:</label>
+                    <label for="code" class="text-light">Output:</label>
                     <textarea name="code" id="code" cols="50" rows="15" class="form-control mt-1" readonly></textarea>
                 </div>
             </form>
         </article>
-        <article class="outputBox container-fluid mt-5">
+        <article class="outputBox container-fluid mt-5 mb-5">
             <span class="alertBox" id="alertBox">
                 <p class="alertMessage" id="alertMessageOut"></p>
                 <button class="dismiss" id="dismiss"></button>

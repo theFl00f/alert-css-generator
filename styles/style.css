@@ -261,7 +261,7 @@ body {
 }
 
 form {
-  height: 53rem;
+  height: 37rem;
 }
 
 nav {
@@ -271,7 +271,7 @@ nav {
 }
 
 textarea#code {
-  max-height: 36vh;
+  max-height: 23.5vh;
 }
 
 .dismiss {

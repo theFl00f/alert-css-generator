@@ -105,14 +105,13 @@ $forms.on('submit', (e) => {
 
 $navButton.on('click', function(e) {
     e.preventDefault();
-    $navButton.removeClass('active btn-primary').addClass('btn btn-secondary');
-    $(this).removeClass('btn btn-primary btn-secondary').addClass('active btn btn-primary');
+    $navButton.removeClass('active btn-dark').addClass('btn btn-light');
+    $(this).removeClass('btn btn-light').addClass('active btn btn-dark');
     getCurrentForm()
 })
 
 
 $outputButton.on('click', () => {
-    const alertMessageCss = $alertMessageOut.css(['padding-top', 'padding-bottom'])
 
     const dismissButton = document.getElementById('dismiss')
     const alertBox = document.getElementById('alertBox')
