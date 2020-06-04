@@ -230,19 +230,6 @@ body {
 }
 
 .wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   max-width: 1300px;
   width: 90%;
   margin: 0 auto;
@@ -261,18 +248,20 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 6px black solid;
+  border-style: solid;
 }
 
-form {
+.outputBox {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+form {
+  height: 53rem;
 }
 
 nav {
@@ -281,8 +270,12 @@ nav {
   display: flex;
 }
 
+textarea#code {
+  max-height: 36vh;
+}
+
 .dismiss {
-  border: 6px black solid;
+  border-style: solid;
 }
 
 .lato {

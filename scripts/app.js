@@ -1,4 +1,3 @@
-console.log('hello')
 
 
 //font family? no as option, some prebuilt from google
@@ -31,7 +30,7 @@ const $boxNavButton = $('#alertBoxForm');
 const $buttonNavButton = $('#buttonForm');
 const $outputButton = $('#codeOutput')
 const $dismissButtonText = $('#buttonText1');
-const $dismissButton = $('.dismiss');
+const $dismissButton = $('#dismiss');
 const $buttonWidth = $('#buttonWidth');
 const $buttonHeight = $('#buttonHeight');
 const $buttonBgColor = $('#buttonBgColor');
@@ -39,7 +38,11 @@ const $buttonBorderWidth = $('#buttonBorderWidth');
 const $buttonBorderRadius = $('#buttonBorderRadius');
 const $buttonBorderColor = $('#buttonBorderColor');
 const $buttonTextColor = $('#buttonTextColor');
-const $outputTextarea = $('#codeOutputForm textarea')
+const $outputTextarea = $('#codeOutputForm textarea');
+
+
+
+
 
 
 
@@ -71,15 +74,15 @@ getMessage = ( target, source ) => {
 }
 
 getCurrentForm = () => {
-    $forms.hide();
+    $forms.removeClass('d-block').addClass('d-none');
     if ($boxNavButton.hasClass('active')) {
-        $alertBoxForm.show();
+        $alertBoxForm.addClass('d-block');
     } 
     else if ($buttonNavButton.hasClass('active')) {
-        $buttonForm.show();
+        $buttonForm.addClass('d-block');
     }
     else {        
-        $outputForm.show();
+        $outputForm.addClass('d-block');
     }
 }
 
@@ -100,7 +103,6 @@ $navButton.on('click', function(e) {
 
 
 $outputButton.on('click', () => {
-    let dismissObject;
 
     const alertBoxCss = $alertBox.css(['background-color', 'border-color', 'color', 'width', 'height', 'border-width', 'border-radius'])
 
@@ -109,26 +111,52 @@ $outputButton.on('click', () => {
     const alertButtonCss = $dismissButton.css(['min-height', 'width', 'background-color', 'border-width', 'border-radius', 'border-color', 'color', 'border-style'])
     
     // console.log(alertBoxCss, alertMessageCss, alertButtonCss)
-    const dismissButton = document.getElementsByClassName('dismiss')
-    const dismissButtonCopy = [...dismissButton]
+
+    const dismissButton = document.getElementById('dismiss')
+    const alertBox = document.getElementById('alertBox')
+
+    const buttonComputedStyle = getComputedStyle(dismissButton)
+    const dismissObject = {
+        'min-height': buttonComputedStyle.height, 
+        'width': buttonComputedStyle.width, 
+        'background-color': buttonComputedStyle.backgroundColor, 
+        'border-width': buttonComputedStyle.borderTopWidth, 
+        'border-radius': buttonComputedStyle.borderTopRightRadius, 
+        'border-style': buttonComputedStyle['border-inline-start-style'], 
+        'border-color': buttonComputedStyle.borderTopColor,
+        'color': buttonComputedStyle.color
+    } 
+
+    const alertBoxComputedStyle = getComputedStyle(alertBox)
+    const alertBoxObject = {
+        'background-color': alertBoxComputedStyle.backgroundColor, 
+        'border-color': alertBoxComputedStyle.borderTopColor, 
+        'color': alertBoxComputedStyle.color, 
+        'width': alertBoxComputedStyle.width, 
+        'height': alertBoxComputedStyle.height, 
+        'border-width': alertBoxComputedStyle.borderTopWidth, 
+        'border-radius': alertBoxComputedStyle.borderBottomRightRadius
+    }
 
 
-    dismissButtonCopy.forEach(element => {
-        const computedStyle = getComputedStyle(element)
-        const dismissObject = {
-            'min-height': computedStyle.minHeight, 
-            'width': computedStyle.width, 
-            'background-color': computedStyle.backgroundColor, 
-            'border-width': computedStyle.borderTopWidth, 
-            'border-radius': computedStyle.borderTopRightRadius, 
-            'border-style': computedStyle['border-inline-start-style'], 
-            'color': computedStyle.color
-        } 
-        $outputTextarea.text(`
-        //styles
-        button ${JSON.stringify(dismissObject, null, '\t')}
-        `)
-    });
+
+    const buttonJson = JSON.stringify(dismissObject, null, '\t')
+    const alertBoxJson = JSON.stringify(alertBoxObject, null, '\t')
+
+    const removeQuotes = (string) => {
+        return string.replace(/"([^"]+)"/g, '$1')
+    }
+
+    const unquotedButton = removeQuotes(buttonJson)
+    const unquotedAlertBox = removeQuotes(alertBoxJson)
+
+
+    $outputTextarea.text(
+`
+//styles
+button ${unquotedButton}
+.alertBox ${unquotedAlertBox}
+`)
 
 })
 
@@ -157,7 +185,6 @@ $alertMessageColor.on('input', () => {
 })
 
 $alertWidth.on('input', () => {
-    console.log($alertWidth.val())
     changeUnit($alertBox, 'width', $alertWidth)
 })
 
