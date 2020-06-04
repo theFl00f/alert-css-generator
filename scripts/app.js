@@ -112,14 +112,7 @@ $navButton.on('click', function(e) {
 
 
 $outputButton.on('click', () => {
-
-    const alertBoxCss = $alertBox.css(['background-color', 'border-color', 'color', 'width', 'height', 'border-width', 'border-radius'])
-
     const alertMessageCss = $alertMessageOut.css(['padding-top', 'padding-bottom'])
-
-    const alertButtonCss = $dismissButton.css(['min-height', 'width', 'background-color', 'border-width', 'border-radius', 'border-color', 'color', 'border-style'])
-    
-    // console.log(alertBoxCss, alertMessageCss, alertButtonCss)
 
     const dismissButton = document.getElementById('dismiss')
     const alertBox = document.getElementById('alertBox')
@@ -130,14 +123,14 @@ $outputButton.on('click', () => {
         'min-height': buttonComputedStyle.height, 
         'width': buttonComputedStyle.width, 
         'background-color': buttonComputedStyle.backgroundColor, 
-        'border-width': buttonComputedStyle.borderTopWidth, 
         'border-radius': buttonComputedStyle.borderTopRightRadius, 
         'border-style': buttonComputedStyle['border-inline-start-style'], 
         'border-color': buttonComputedStyle.borderTopColor,
         'color': buttonComputedStyle.color
     } 
 
-    //remove border width from the main object, do a terniary to check for '0px'
+    console.log(buttonComputedStyle.borderTopWidth)
+    buttonComputedStyle.borderTopWidth === '0px' ? null : dismissObject['border-width'] = buttonComputedStyle.borderTopWidth;
 
     const alertBoxComputedStyle = getComputedStyle(alertBox)
     const alertBoxObject = {
@@ -146,9 +139,10 @@ $outputButton.on('click', () => {
         'color': alertBoxComputedStyle.color, 
         'width': alertBoxComputedStyle.width, 
         'height': alertBoxComputedStyle.height, 
-        'border-width': alertBoxComputedStyle.borderTopWidth, 
         'border-radius': alertBoxComputedStyle.borderBottomRightRadius
     }
+
+    alertBoxComputedStyle.borderTopWidth === '0px' ? null : alertBoxObject['border-width'] = alertBoxComputedStyle.borderTopWidth;
 
     const alertMessageComputedStyle = getComputedStyle(alertMessage)
     const alertMessageObject = {
@@ -158,6 +152,7 @@ $outputButton.on('click', () => {
 
     const buttonJson = JSON.stringify(dismissObject, null, '\t')
     const alertBoxJson = JSON.stringify(alertBoxObject, null, '\t')
+    
     const alertMessageJson = JSON.stringify(alertMessageObject, null, '\t')
 
     const removeQuotes = (string) => {
@@ -171,9 +166,9 @@ $outputButton.on('click', () => {
     $outputTextarea.text(
 `
 //styles
-button ${unquotedButton}
 .alertBox ${unquotedAlertBox}
-
+button ${unquotedButton}
+ ${$alertMessage.val() === '' ? "" : '.alertMessage ' + unquotedAlertMessage}
 `)
 
 })
