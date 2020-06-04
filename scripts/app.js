@@ -1,10 +1,5 @@
 
 
-//font family? no as option, some prebuilt from google
-//padding slider x 2 dialog
-//padding slider alert text
-//text color, alert bg color
-//border on/off and slider with color
 //border radius slider
 //drop shadow
 
@@ -64,6 +59,20 @@ changeUnit = (target, property, source) => {
 changeMessagePadding = () => {
     changeUnit($alertMessageOut, 'padding-top', $alertMessagePadding)
     changeUnit($alertMessageOut, 'padding-bottom', $alertMessagePadding)
+    if ($alertMessage.val() === '') {
+        $alertMessageOut.addClass('d-none');
+        changeUnit($alertButton, 'margin-top', $alertMessagePadding)
+        $alertButton.css('margin-top', '3.25rem')
+        $alertMessagePadding.on('input', () => {
+            changeUnit($alertButton, 'margin-top', $alertMessagePadding)
+        })
+    } else {
+        $alertMessagePadding.off().on('input', () => {
+            changeMessagePadding()
+        })
+        $alertMessageOut.removeClass('d-none');
+        $alertButton.css('margin-top', '0rem')
+    }
 }
 
 getMessage = ( target, source ) => {
@@ -114,6 +123,7 @@ $outputButton.on('click', () => {
 
     const dismissButton = document.getElementById('dismiss')
     const alertBox = document.getElementById('alertBox')
+    const alertMessage = document.getElementById('alertMessageOut')
 
     const buttonComputedStyle = getComputedStyle(dismissButton)
     const dismissObject = {
@@ -127,6 +137,8 @@ $outputButton.on('click', () => {
         'color': buttonComputedStyle.color
     } 
 
+    //remove border width from the main object, do a terniary to check for '0px'
+
     const alertBoxComputedStyle = getComputedStyle(alertBox)
     const alertBoxObject = {
         'background-color': alertBoxComputedStyle.backgroundColor, 
@@ -138,10 +150,15 @@ $outputButton.on('click', () => {
         'border-radius': alertBoxComputedStyle.borderBottomRightRadius
     }
 
-
+    const alertMessageComputedStyle = getComputedStyle(alertMessage)
+    const alertMessageObject = {
+        'padding-top': alertMessageComputedStyle.paddingTop,
+        'padding-bottom': alertMessageComputedStyle.paddingBottom
+    }
 
     const buttonJson = JSON.stringify(dismissObject, null, '\t')
     const alertBoxJson = JSON.stringify(alertBoxObject, null, '\t')
+    const alertMessageJson = JSON.stringify(alertMessageObject, null, '\t')
 
     const removeQuotes = (string) => {
         return string.replace(/"([^"]+)"/g, '$1')
@@ -149,13 +166,14 @@ $outputButton.on('click', () => {
 
     const unquotedButton = removeQuotes(buttonJson)
     const unquotedAlertBox = removeQuotes(alertBoxJson)
-
+    const unquotedAlertMessage = removeQuotes(alertMessageJson)
 
     $outputTextarea.text(
 `
 //styles
 button ${unquotedButton}
 .alertBox ${unquotedAlertBox}
+
 `)
 
 })
