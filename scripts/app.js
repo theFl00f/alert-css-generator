@@ -161,9 +161,17 @@ $outputButton.on('click', () => {
 
     $outputTextarea.text(
 `
+//html
+<span class="alertBox" id="alertBox">
+    <p class="alertMessage" id="alertMessage"></p>
+    <button class="dismiss" id="dismiss"></button>
+</span>
+
 //styles
 .alertBox ${alertBoxString}
-button ${dismissString} ${$alertMessage.val() === '' ? '' : `
+
+.dismiss ${dismissString} ${$alertMessage.val() === '' ? '' : `
+
 .alertMessage ${alertMessageString}`}
 `)
 
