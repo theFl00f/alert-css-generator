@@ -43,20 +43,20 @@ const $outputTextarea = $('#codeOutputForm textarea');
 
 
 
-getFontFamily = (element) => {
+const getFontFamily = (element) => {
     element.removeClass('lato montserrat raleway roboto').addClass($fontFamilySelection.val())
 }
 
-changeColor = (target, property, source) => {
+const changeColor = (target, property, source) => {
     target.css(property, source.val())
 }
 
-changeUnit = (target, property, source) => {
+const changeUnit = (target, property, source) => {
     target.css(property, `${source.val()}rem`)
     //stretch: add variable for unit input
 }
 
-changeMessagePadding = () => {
+const changeMessagePadding = () => {
     changeUnit($alertMessageOut, 'padding-top', $alertMessagePadding)
     changeUnit($alertMessageOut, 'padding-bottom', $alertMessagePadding)
     if ($alertMessage.val() === '') {
@@ -71,18 +71,26 @@ changeMessagePadding = () => {
             changeMessagePadding()
         })
         $alertMessageOut.removeClass('d-none');
-        $alertButton.css('margin-top', '0rem')
+        $alertButton.css('margin-top', '0rem');
     }
 }
 
-getMessage = ( target, source ) => {
+
+const getMessage = ( target, source ) => {
     target.text( source.val() ) 
-    if (source.val() === '') {
-        target.css('padding', '0')
+    if (source === $alertMessage) {
+        if ($alertMessage.val() === '') {
+            target.css('padding', '0')
+            $alertMessagePadding.val(0)
+
+        } else if ($alertMessage.val().length === 1) {
+            source.css('padding', '0');
+            $alertMessagePadding.val(1.5)
+        }
     }
 }
 
-getCurrentForm = () => {
+const getCurrentForm = () => {
     $forms.removeClass('d-block').addClass('d-none');
     if ($boxNavButton.hasClass('active')) {
         $alertBoxForm.addClass('d-block');
@@ -128,7 +136,6 @@ $outputButton.on('click', () => {
         'color': buttonComputedStyle.color
     } 
 
-    console.log(buttonComputedStyle.borderTopWidth)
     buttonComputedStyle.borderTopWidth === '0px' ? null : dismissObject['border-width'] = buttonComputedStyle.borderTopWidth;
 
     const alertBoxComputedStyle = getComputedStyle(alertBox)
@@ -138,7 +145,8 @@ $outputButton.on('click', () => {
         'color': alertBoxComputedStyle.color, 
         'width': alertBoxComputedStyle.width, 
         'height': alertBoxComputedStyle.height, 
-        'border-radius': alertBoxComputedStyle.borderBottomRightRadius
+        'border-radius': alertBoxComputedStyle.borderBottomRightRadius,
+        'font-family': alertBoxComputedStyle.fontFamily
     }
 
     alertBoxComputedStyle.borderTopWidth === '0px' ? null : alertBoxObject['border-width'] = alertBoxComputedStyle.borderTopWidth;
@@ -155,7 +163,7 @@ $outputButton.on('click', () => {
     const alertMessageJson = JSON.stringify(alertMessageObject, null, '\t')
 
     const removeQuotes = (string) => {
-        return string.replace(/"([^"]+)"/g, '$1')
+        return string.replace(/^"(.*)"$/, '$1')
     }
 
     const unquotedButton = removeQuotes(buttonJson)
