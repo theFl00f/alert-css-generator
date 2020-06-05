@@ -126,62 +126,45 @@ $outputButton.on('click', () => {
     const alertMessage = document.getElementById('alertMessageOut')
 
     const buttonComputedStyle = getComputedStyle(dismissButton)
-    const dismissObject = {
-        'min-height': buttonComputedStyle.height, 
-        'width': buttonComputedStyle.width, 
-        'background-color': buttonComputedStyle.backgroundColor, 
-        'border-radius': buttonComputedStyle.borderTopRightRadius, 
-        'border-style': buttonComputedStyle['border-inline-start-style'], 
-        'border-color': buttonComputedStyle.borderTopColor,
-        'color': buttonComputedStyle.color
-    } 
+    const dismissString = `{
+    min-height: ${buttonComputedStyle.height}, 
+    width: ${buttonComputedStyle.width}, 
+    background-color: ${buttonComputedStyle.backgroundColor}, 
+    border-radius: ${buttonComputedStyle.borderTopRightRadius}, 
+    border-style: ${buttonComputedStyle['border-inline-start-style']}, 
+    border-color: ${buttonComputedStyle.borderTopColor},
+    color: ${buttonComputedStyle.color}
+}`
 
-    buttonComputedStyle.borderTopWidth === '0px' ? null : dismissObject['border-width'] = buttonComputedStyle.borderTopWidth;
+    buttonComputedStyle.borderTopWidth === '0px' ? null : dismissString['border-width'] = buttonComputedStyle.borderTopWidth;
 
     const alertBoxComputedStyle = getComputedStyle(alertBox)
-    const alertBoxObject = {
-        'background-color': alertBoxComputedStyle.backgroundColor, 
-        'border-color': alertBoxComputedStyle.borderTopColor, 
-        'color': alertBoxComputedStyle.color, 
-        'width': alertBoxComputedStyle.width, 
-        'height': alertBoxComputedStyle.height, 
-        'border-radius': alertBoxComputedStyle.borderBottomRightRadius,
-        'font-family': alertBoxComputedStyle.fontFamily
-    }
+    const alertBoxString = `{
+    background-color: ${alertBoxComputedStyle.backgroundColor}, 
+    border-color: ${alertBoxComputedStyle.borderTopColor}, 
+    color: ${alertBoxComputedStyle.color}, 
+    width: ${alertBoxComputedStyle.width}, 
+    height: ${alertBoxComputedStyle.height}, 
+    border-radius: ${alertBoxComputedStyle.borderBottomRightRadius},
+    font-family: ${alertBoxComputedStyle.fontFamily}
+}`
 
     console.log(alertBoxComputedStyle.fontFamily)
 
-    alertBoxComputedStyle.borderTopWidth === '0px' ? null : alertBoxObject['border-width'] = alertBoxComputedStyle.borderTopWidth;
+    alertBoxComputedStyle.borderTopWidth === '0px' ? null : alertBoxString['border-width'] = alertBoxComputedStyle.borderTopWidth;
 
     const alertMessageComputedStyle = getComputedStyle(alertMessage)
-    const alertMessageObject = {
-        'padding-top': alertMessageComputedStyle.paddingTop,
-        'padding-bottom': alertMessageComputedStyle.paddingBottom
-    }
-
-    const buttonJson = JSON.stringify(dismissObject, null, '\t')
-    const alertBoxJson = JSON.stringify(alertBoxObject, null, '\t')
-    
-    const alertMessageJson = JSON.stringify(alertMessageObject, null, '\t')
-
-    const removeQuotes = (string) => {
-        return string.replace(/"([^"]+(?="))"/g, '$1')
-    }
-
-    const unquotedButton = removeQuotes(buttonJson)
-    const unquotedAlertBox = removeQuotes(alertBoxJson)
-    const unquotedAlertMessage = removeQuotes(alertMessageJson)
-
-    // const unquotedButton = dismissObject.toString();
-    // const unquotedAlertBox = alertBoxObject.toString();
-    // const unquotedAlertMessage = alertMessageObject.toString();
+    const alertMessageString = `{
+    padding-top: ${alertMessageComputedStyle.paddingTop},
+    padding-bottom: ${alertMessageComputedStyle.paddingBottom}
+}`
 
     $outputTextarea.text(
 `
 //styles
-.alertBox ${unquotedAlertBox}
-button ${unquotedButton}
-${$alertMessage.val() === '' ? "" : '.alertMessage ' + unquotedAlertMessage}
+.alertBox ${alertBoxString}
+button ${dismissString}
+${$alertMessage.val() === '' ? "" : '.alertMessage ' + alertMessageString}
 `)
 
 })
