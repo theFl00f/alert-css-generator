@@ -149,6 +149,8 @@ $outputButton.on('click', () => {
         'font-family': alertBoxComputedStyle.fontFamily
     }
 
+    console.log(alertBoxComputedStyle.fontFamily)
+
     alertBoxComputedStyle.borderTopWidth === '0px' ? null : alertBoxObject['border-width'] = alertBoxComputedStyle.borderTopWidth;
 
     const alertMessageComputedStyle = getComputedStyle(alertMessage)
@@ -163,19 +165,23 @@ $outputButton.on('click', () => {
     const alertMessageJson = JSON.stringify(alertMessageObject, null, '\t')
 
     const removeQuotes = (string) => {
-        return string.replace(/^"(.*)"$/, '$1')
+        return string.replace(/"([^"]+(?="))"/g, '$1')
     }
 
     const unquotedButton = removeQuotes(buttonJson)
     const unquotedAlertBox = removeQuotes(alertBoxJson)
     const unquotedAlertMessage = removeQuotes(alertMessageJson)
 
+    // const unquotedButton = dismissObject.toString();
+    // const unquotedAlertBox = alertBoxObject.toString();
+    // const unquotedAlertMessage = alertMessageObject.toString();
+
     $outputTextarea.text(
 `
 //styles
 .alertBox ${unquotedAlertBox}
 button ${unquotedButton}
- ${$alertMessage.val() === '' ? "" : '.alertMessage ' + unquotedAlertMessage}
+${$alertMessage.val() === '' ? "" : '.alertMessage ' + unquotedAlertMessage}
 `)
 
 })
