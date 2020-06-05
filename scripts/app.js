@@ -133,7 +133,8 @@ $outputButton.on('click', () => {
     border-radius: ${buttonComputedStyle.borderTopRightRadius}, 
     border-style: ${buttonComputedStyle['border-inline-start-style']}, 
     border-color: ${buttonComputedStyle.borderTopColor},
-    color: ${buttonComputedStyle.color}
+    color: ${buttonComputedStyle.color}${$alertMessage.val() === '' ?  `, 
+    margin-top: ${buttonComputedStyle.marginTop}` : ''}
 }`
 
     buttonComputedStyle.borderTopWidth === '0px' ? null : dismissString['border-width'] = buttonComputedStyle.borderTopWidth;
@@ -149,7 +150,6 @@ $outputButton.on('click', () => {
     font-family: ${alertBoxComputedStyle.fontFamily}
 }`
 
-    console.log(alertBoxComputedStyle.fontFamily)
 
     alertBoxComputedStyle.borderTopWidth === '0px' ? null : alertBoxString['border-width'] = alertBoxComputedStyle.borderTopWidth;
 
@@ -163,8 +163,8 @@ $outputButton.on('click', () => {
 `
 //styles
 .alertBox ${alertBoxString}
-button ${dismissString}
-${$alertMessage.val() === '' ? "" : '.alertMessage ' + alertMessageString}
+button ${dismissString} ${$alertMessage.val() === '' ? '' : `
+.alertMessage ${alertMessageString}`}
 `)
 
 })
