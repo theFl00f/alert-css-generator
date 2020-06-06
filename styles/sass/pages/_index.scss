@@ -20,7 +20,7 @@
 }
 
 form {
-    height: 37rem;
+    height: 44rem;
 }
 
 
@@ -28,8 +28,10 @@ nav {
     display: flex;
 }
 
-#codeHTML, #codeCSS {
-    height: 14.5rem;
+textarea {
+    &#codeCSS, &#codeHTML {
+        height: 18rem;
+    }
     resize: none;
 }
 

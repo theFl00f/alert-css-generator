@@ -21,8 +21,11 @@
                 <button id="codeOutput" class="btn btn-light">Output</button>
             </nav>
             <form id="alertBoxStyles" class="bg-dark pl-5 pr-5 rounded-bottom">
-                <!-- allow for class name input here -->
                 <div class="form-group pt-3 row">
+                    <label for="alertBoxClass" class="col text-light">Alert box class name?</label>
+                    <input type="text" id="alertBoxClass" name="alertBoxClass" class="form-control mt-1 col" placeholder="alertBox">
+                </div>
+                <div class="form-group row">
                     <label for="fontFamily" class="col text-light">Font family?</label>
                     <select class="custom-select mt-1 col" name="fontFamily" id="fontFamily">
                         <option value="none" selected>None</option>
@@ -35,6 +38,10 @@
                 <div class="form-group row">
                     <label for="alertMessage" class="col text-light">alert message? leave empty if no message.</label>
                     <textarea name="alertMessage" id="alertMessage" class="form-control mt-1 col"></textarea>
+                </div>
+                <div class="form-group row" id="messageClassGroup">
+                    <label for="alertMessageClass" class="col text-light">Alert message class name?</label>
+                    <input type="text" name="alertMessageClass" id="alertMessageClass" class="form-control mt-1 col" placeholder="alertMessage">
                 </div>
                 <div class="form-group row">
                     <label for="alertBoxPaddingX" class="col text-light">Alert box width:</label>
@@ -71,10 +78,13 @@
                 </div>
             </form>
             <form id="buttonStyles" class="bg-dark pl-5 pr-5 d-none">
-                <!-- allow for class name input here -->
                 <div class="form-group pt-3 row">
+                    <label for="buttonClass" class="col text-light">Button class?</label>
+                    <input type="text" id="buttonClass" name="buttonClass" class="form-control mt-1 col" placeholder="dismiss">
+                </div>
+                <div class="form-group row">
                     <label for="buttonText1" class="col text-light">Dismiss text:</label>
-                    <input type="text" id="buttonText1" value="ok" class="form-control mt-1 col">
+                    <input type="text" id="buttonText1" value="ok" class="form-control mt-1 col" name="buttonText1">
                 </div>
                 <div class="form-group row">
                     <label for="buttonHeight" class="col text-light">Button height: </label>

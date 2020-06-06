@@ -35,7 +35,8 @@ const $buttonBorderColor = $('#buttonBorderColor');
 const $buttonTextColor = $('#buttonTextColor');
 const $outputHTML = $('#codeHTML');
 const $outputCSS = $('#codeCSS')
-
+const $alertMessageClass = $('#alertMessageClass')
+const $alertMessageFormGroup = $('#messageClassGroup')
 
 
 
@@ -104,6 +105,16 @@ const getCurrentForm = () => {
     }
 }
 
+const showClassInput = () => {
+    if ($alertMessage.val() === '') {
+        console.log('empty')
+        $alertMessageFormGroup.hide();
+    } else {
+        console.log('meow')
+        $alertMessageFormGroup.show()
+    }
+}
+
 
 
 
@@ -162,8 +173,8 @@ $outputButton.on('click', () => {
 
     $outputHTML.text(
 `<span class="alertBox" id="alertBox">
-    <p class="alertMessage" id="alertMessage"></p>
-    <button class="dismiss" id="dismiss"></button>
+    <p class="alertMessage" id="alertMessage">${$alertMessage.val()}</p>
+    <button class="dismiss" id="dismiss">${$dismissButtonText.val()}</button>
 </span>`)
 
     $outputCSS.text(
@@ -189,6 +200,7 @@ $alertColor.on('input', () => {
 $alertMessage.on('input', () => {
     getMessage($alertMessageOut, $alertMessage);
     changeMessagePadding();
+    showClassInput()
 })
 
 $alertBorderColor.on('input', () => {
@@ -276,6 +288,7 @@ getPrev = () => {
     changeColor($dismissButton, 'border-color', $buttonBorderColor);
     changeColor($dismissButton, 'color', $buttonTextColor);
     changeMessagePadding();
+    showClassInput()
 
 
 }

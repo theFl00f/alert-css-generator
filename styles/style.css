@@ -261,7 +261,7 @@ body {
 }
 
 form {
-  height: 37rem;
+  height: 44rem;
 }
 
 nav {
@@ -270,9 +270,12 @@ nav {
   display: flex;
 }
 
-#codeHTML, #codeCSS {
-  height: 14.5rem;
+textarea {
   resize: none;
+}
+
+textarea#codeCSS, textarea#codeHTML {
+  height: 18rem;
 }
 
 .dismiss {
