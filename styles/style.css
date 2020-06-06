@@ -270,8 +270,8 @@ nav {
   display: flex;
 }
 
-textarea#code {
-  height: 32rem;
+#codeHTML, #codeCSS {
+  height: 14.5rem;
   resize: none;
 }
 

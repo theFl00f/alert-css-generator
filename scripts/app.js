@@ -33,7 +33,8 @@ const $buttonBorderWidth = $('#buttonBorderWidth');
 const $buttonBorderRadius = $('#buttonBorderRadius');
 const $buttonBorderColor = $('#buttonBorderColor');
 const $buttonTextColor = $('#buttonTextColor');
-const $outputTextarea = $('#codeOutputForm textarea');
+const $outputHTML = $('#codeHTML');
+const $outputCSS = $('#codeCSS')
 
 
 
@@ -159,21 +160,18 @@ $outputButton.on('click', () => {
     padding-bottom: ${alertMessageComputedStyle.paddingBottom}
 }`
 
-    $outputTextarea.text(
-`
-//html
-<span class="alertBox" id="alertBox">
+    $outputHTML.text(
+`<span class="alertBox" id="alertBox">
     <p class="alertMessage" id="alertMessage"></p>
     <button class="dismiss" id="dismiss"></button>
-</span>
+</span>`)
 
-//styles
-.alertBox ${alertBoxString}
+    $outputCSS.text(
+`.alertBox ${alertBoxString}
 
 .dismiss ${dismissString} ${$alertMessage.val() === '' ? '' : `
 
-.alertMessage ${alertMessageString}`}
-`)
+.alertMessage ${alertMessageString}`}`)
 
 })
 
