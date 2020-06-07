@@ -66,46 +66,54 @@ $outputButton.on('click', () => {
 
     const buttonComputedStyle = getComputedStyle(dismissButton)
     const dismissString = `{
-    min-height: ${buttonComputedStyle.height}, 
-    width: ${buttonComputedStyle.width}, 
-    background-color: ${buttonComputedStyle.backgroundColor}, 
-    border-radius: ${buttonComputedStyle.borderTopRightRadius}, 
-    border-style: ${buttonComputedStyle['border-inline-start-style']}, 
-    border-color: ${buttonComputedStyle.borderTopColor},
-    color: ${buttonComputedStyle.color}${$alertMessage.val() === '' ?  `, 
-    margin-top: ${buttonComputedStyle.marginTop}` : ''}
+    min-height: ${$buttonHeight.val()}rem; 
+    width: ${$buttonWidth.val()}rem; 
+    background-color: ${$buttonBgColor.val()}; 
+    border-radius: ${$buttonBorderRadius.val()}rem; 
+    border-color: ${$buttonBorderColor.val()};
+    color: ${$buttonTextColor.val()};${$alertMessage.val() === '' ?  ` 
+    margin-top: ${$dismissButton.css('margin-top')};` : ''} ${buttonComputedStyle.borderTopWidth === '0px'? '' : `
+    border-width: ${$buttonBorderWidth.val()}rem;
+    border-style: solid;`}
 }`
-
-    buttonComputedStyle.borderTopWidth === '0px' ? null : dismissString['border-width'] = buttonComputedStyle.borderTopWidth;
 
     const alertBoxComputedStyle = getComputedStyle(alertBox)
     const alertBoxString = `{
-    background-color: ${alertBoxComputedStyle.backgroundColor}, 
-    border-color: ${alertBoxComputedStyle.borderTopColor}, 
-    color: ${alertBoxComputedStyle.color}, 
-    width: ${alertBoxComputedStyle.width}, 
-    height: ${alertBoxComputedStyle.height}, 
-    border-radius: ${alertBoxComputedStyle.borderBottomRightRadius},
-    font-family: ${alertBoxComputedStyle.fontFamily}
+    background-color: ${$alertColor.val()}; 
+    border-color: ${$alertBorderColor.val()}; 
+    color: ${$alertMessageColor.val()}; 
+    width: ${$alertWidth.val()}rem; 
+    height: ${$alertHeight.val()}rem; 
+    border-radius: ${$alertBorderRadius.val()}rem;
+    font-family: ${$fontFamilySelection.val()};
+    text-align: center; ${$alertBorderWidth.val() == 0 ? '' : `
+    border-width: ${$alertBorderWidth.val()}rem;
+    border-style: solid;`}
 }`
 
-
-    alertBoxComputedStyle.borderTopWidth === '0px' ? null : alertBoxString['border-width'] = alertBoxComputedStyle.borderTopWidth;
 
     const alertMessageComputedStyle = getComputedStyle(alertMessage)
     const alertMessageString = `{
-    padding-top: ${alertMessageComputedStyle.paddingTop},
-    padding-bottom: ${alertMessageComputedStyle.paddingBottom}
+    padding-top: ${alertMessageComputedStyle.paddingTop};
+    padding-bottom: ${alertMessageComputedStyle.paddingBottom};
 }`
 
     $outputHTML.text(
-`<span class="${$alertMessageClass.val() === '' ? "alertMessage" : $alertMessageClass.val()}">${$alertMessage.val() === '' ? '' : `
-<p class="${$alertMessageClass.val() === '' ? ".alertMessage" : $alertMessageClass.val()}">${$alertMessage.val()}</p>`}
-    <button class="${$alertButtonClass.val() === '' ? ".dismiss" : $alertButtonClass.val()}">${$dismissButtonText.val()}</button>
-</span>`)
+`<div class="${$alertBoxClass.val() === '' ? "alertBox" : $alertBoxClass.val()}">${$alertMessage.val() === '' ? '' : `
+    <p class="${$alertMessageClass.val() === '' ? "alertMessage" : $alertMessageClass.val()}">${$alertMessage.val()}</p>`}
+    <button class="${$alertButtonClass.val() === '' ? "dismiss" : $alertButtonClass.val()}">${$dismissButtonText.val()}</button>
+</div>`)
 
     $outputCSS.text(
-`.${$alertBoxClass.val() === '' ? 'alertBox' : $alertBoxClass.val()} ${alertBoxString}
+`html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.4rem;
+}
+
+.${$alertBoxClass.val() === '' ? 'alertBox' : $alertBoxClass.val()} ${alertBoxString}
 
 .${$alertButtonClass.val() === '' ? 'dismiss' :  $alertButtonClass.val()} ${dismissString} ${$alertMessage.val() === '' ? '' : `
 
