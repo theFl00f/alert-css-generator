@@ -34,86 +34,13 @@ const $buttonBorderRadius = $('#buttonBorderRadius');
 const $buttonBorderColor = $('#buttonBorderColor');
 const $buttonTextColor = $('#buttonTextColor');
 const $outputHTML = $('#codeHTML');
-const $outputCSS = $('#codeCSS')
-const $alertMessageClass = $('#alertMessageClass')
-const $alertMessageFormGroup = $('#messageClassGroup')
+const $outputCSS = $('#codeCSS');
+const $alertMessageFormGroup = $('#messageClassGroup');
+const $alertMessageClass = $('#alertMessageClass');
+const $alertButtonClass = $('#buttonClass')
+const $alertBoxClass = $('#alertBoxClass')
 
 
-
-
-
-
-
-
-const getFontFamily = (element) => {
-    element.removeClass('lato montserrat raleway roboto').addClass($fontFamilySelection.val())
-}
-
-const changeColor = (target, property, source) => {
-    target.css(property, source.val())
-}
-
-const changeUnit = (target, property, source) => {
-    target.css(property, `${source.val()}rem`)
-    //stretch: add variable for unit input
-}
-
-const changeMessagePadding = () => {
-    changeUnit($alertMessageOut, 'padding-top', $alertMessagePadding)
-    changeUnit($alertMessageOut, 'padding-bottom', $alertMessagePadding)
-    if ($alertMessage.val() === '') {
-        $alertMessageOut.addClass('d-none');
-        changeUnit($alertButton, 'margin-top', $alertMessagePadding)
-        $alertButton.css('margin-top', '3.25rem')
-        $alertMessagePadding.on('input', () => {
-            changeUnit($alertButton, 'margin-top', $alertMessagePadding)
-        })
-    } else {
-        $alertMessagePadding.off().on('input', () => {
-            changeMessagePadding()
-        })
-        $alertMessageOut.removeClass('d-none');
-        $alertButton.css('margin-top', '0rem');
-    }
-}
-
-
-const getMessage = ( target, source ) => {
-    target.text( source.val() ) 
-    if (source === $alertMessage) {
-        if ($alertMessage.val() === '') {
-            target.css('padding', '0')
-            $alertMessagePadding.val(0)
-
-        } else if ($alertMessage.val().length === 1) {
-            source.css('padding', '0');
-            $alertMessagePadding.val(1.5)
-        }
-    }
-}
-
-const getCurrentForm = () => {
-    $forms.removeClass('d-block').addClass('d-none');
-    if ($boxNavButton.hasClass('active')) {
-        $alertBoxForm.addClass('d-block');
-    } 
-    else if ($buttonNavButton.hasClass('active')) {
-        $buttonForm.addClass('d-block');
-    }
-    else {        
-        $outputForm.addClass('d-block');
-    }
-}
-
-const showClassInput = () => {
-    if ($alertMessage.val() === '') {
-        console.log('empty')
-        $alertMessageFormGroup.hide();
-    } else {
-        console.log('meow')
-        $alertMessageFormGroup.show()
-    }
-}
 
 
 
@@ -172,21 +99,19 @@ $outputButton.on('click', () => {
 }`
 
     $outputHTML.text(
-`<span class="alertBox" id="alertBox">
-    <p class="alertMessage" id="alertMessage">${$alertMessage.val()}</p>
-    <button class="dismiss" id="dismiss">${$dismissButtonText.val()}</button>
+`<span class="${$alertMessageClass.val() === '' ? "alertMessage" : $alertMessageClass.val()}">${$alertMessage.val() === '' ? '' : `
+<p class="${$alertMessageClass.val() === '' ? ".alertMessage" : $alertMessageClass.val()}">${$alertMessage.val()}</p>`}
+    <button class="${$alertButtonClass.val() === '' ? ".dismiss" : $alertButtonClass.val()}">${$dismissButtonText.val()}</button>
 </span>`)
 
     $outputCSS.text(
-`.alertBox ${alertBoxString}
+`.${$alertBoxClass.val() === '' ? 'alertBox' : $alertBoxClass.val()} ${alertBoxString}
 
-.dismiss ${dismissString} ${$alertMessage.val() === '' ? '' : `
+.${$alertButtonClass.val() === '' ? 'dismiss' :  $alertButtonClass.val()} ${dismissString} ${$alertMessage.val() === '' ? '' : `
 
-.alertMessage ${alertMessageString}`}`)
+.${$alertMessageClass.val() === '' ? 'alertMessage' : $alertMessageClass.val()} ${alertMessageString}`}`)
 
 })
-
-
 
 
 $fontFamilySelection.on('change', () => {
@@ -267,6 +192,85 @@ $buttonBorderColor.on('input', () => {
 $buttonTextColor.on('input', () => {
     changeColor($dismissButton, 'color', $buttonTextColor)
 })
+
+
+
+
+
+
+
+
+const getFontFamily = (element) => {
+    element.removeClass('lato montserrat raleway roboto').addClass($fontFamilySelection.val())
+}
+
+const changeColor = (target, property, source) => {
+    target.css(property, source.val())
+}
+
+const changeUnit = (target, property, source) => {
+    target.css(property, `${source.val()}rem`)
+    //stretch: add variable for unit input
+}
+
+const changeMessagePadding = () => {
+    changeUnit($alertMessageOut, 'padding-top', $alertMessagePadding)
+    changeUnit($alertMessageOut, 'padding-bottom', $alertMessagePadding)
+    if ($alertMessage.val() === '') {
+        $alertMessageOut.addClass('d-none');
+        changeUnit($alertButton, 'margin-top', $alertMessagePadding)
+        $alertButton.css('margin-top', '3.25rem')
+        $alertMessagePadding.on('input', () => {
+            changeUnit($alertButton, 'margin-top', $alertMessagePadding)
+        })
+    } else {
+        $alertMessagePadding.off().on('input', () => {
+            changeMessagePadding()
+        })
+        $alertMessageOut.removeClass('d-none');
+        $alertButton.css('margin-top', '0rem');
+    }
+}
+
+
+const getMessage = ( target, source ) => {
+    target.text( source.val() ) 
+    if (source === $alertMessage) {
+        if ($alertMessage.val() === '') {
+            target.css('padding', '0')
+            $alertMessagePadding.val(0)
+
+        } else if ($alertMessage.val().length === 1) {
+            source.css('padding', '0');
+            $alertMessagePadding.val(1.5)
+        }
+    }
+}
+
+const getCurrentForm = () => {
+    $forms.removeClass('d-block').addClass('d-none');
+    if ($boxNavButton.hasClass('active')) {
+        $alertBoxForm.addClass('d-block');
+    } 
+    else if ($buttonNavButton.hasClass('active')) {
+        $buttonForm.addClass('d-block');
+    }
+    else {        
+        $outputForm.addClass('d-block');
+    }
+}
+
+const showClassInput = () => {
+    if ($alertMessage.val() === '') {
+        console.log('empty')
+        $alertMessageFormGroup.hide();
+    } else {
+        console.log('meow')
+        $alertMessageFormGroup.show()
+    }
+}
+
+
 
 
 getPrev = () => {
