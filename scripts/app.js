@@ -61,8 +61,6 @@ $navButton.on('click', function(e) {
 $outputButton.on('click', () => {
 
     const dismissButton = document.getElementById('dismiss')
-    const alertBox = document.getElementById('alertBox')
-    const alertMessage = document.getElementById('alertMessageOut')
 
     const buttonComputedStyle = getComputedStyle(dismissButton)
     const dismissString = `{
@@ -77,7 +75,6 @@ $outputButton.on('click', () => {
     border-style: solid;`}
 }`
 
-    const alertBoxComputedStyle = getComputedStyle(alertBox)
     const alertBoxString = `{
     background-color: ${$alertColor.val()}; 
     border-color: ${$alertBorderColor.val()}; 
@@ -92,10 +89,9 @@ $outputButton.on('click', () => {
 }`
 
 
-    const alertMessageComputedStyle = getComputedStyle(alertMessage)
     const alertMessageString = `{
-    padding-top: ${alertMessageComputedStyle.paddingTop};
-    padding-bottom: ${alertMessageComputedStyle.paddingBottom};
+    padding-top: ${$alertMessagePadding.val()}rem;
+    padding-bottom: ${$alertMessagePadding.val()}rem;
 }`
 
     $outputHTML.text(
