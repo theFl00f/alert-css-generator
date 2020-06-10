@@ -1,2 +1,2 @@
 # alert-css-generator
-https://theFl00f.github.io/alert-css-generator
+www.celesteellerby.com/alert-css-generator
