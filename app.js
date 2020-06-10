@@ -9,6 +9,20 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+//mongoose setup
+
+var mongoose = require('mongoose');
+var url = 'mongodb://username:passw0rd@ds239009.mlab.com:39009/heroku_szr6bxv6'
+
+mongoose.connect(url, { useNewUrlParser: true })
+
+var db = mongoose.connection
+
+db.once('open', _ => {
+  console.log('database connected: ', url)
+})
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -26,6 +40,11 @@ app.use('/users', usersRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+
+app.listen(3000, () => {
+  console.log('listening at port 3000')
+})
 
 // error handler
 app.use(function(err, req, res, next) {
