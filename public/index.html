@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alert CSS Generator</title>
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Raleway&family=Roboto&display=swap" rel="stylesheet"> 
+    <script
+    src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+    <div class="wrapper container-fluid">
+        <article class="inputBox roboto container-fluid pt-5">
+            <h1 class="display-2 text-center mb-3">&lt;alert css generator/&gt;</alert></h1>
+            <nav class="btn-group btn-group-lg">
+                <button id="alertBoxForm" class="active btn btn-dark">Alert Box</button>
+                <button id="buttonForm" class="btn btn-light">Buttons</button>
+                <button id="codeOutput" class="btn btn-light">Output</button>
+            </nav>
+            <form id="alertBoxStyles" class="bg-dark pl-5 pr-5 rounded-bottom">
+                <div class="form-group pt-3 row">
+                    <label for="alertBoxClass" class="col text-light">Alert box class name?</label>
+                    <input type="text" id="alertBoxClass" name="alertBoxClass" class="form-control mt-1 col" placeholder="alertBox">
+                </div>
+                <div class="form-group row">
+                    <label for="fontFamily" class="col text-light">Font family?</label>
+                    <select class="custom-select mt-1 col" name="fontFamily" id="fontFamily">
+                        <option value="none" selected>None</option>
+                        <option value="roboto">Roboto</option>
+                        <option value="montserrat">Montserrat</option>
+                        <option value="lato">Lato</option>
+                        <option value="raleway">Raleway</option>
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <label for="alertMessage" class="col text-light">alert message? leave empty if no message.</label>
+                    <textarea name="alertMessage" id="alertMessage" class="form-control mt-1 col"></textarea>
+                </div>
+                <div class="form-group row" id="messageClassGroup">
+                    <label for="alertMessageClass" class="col text-light">Alert message class name?</label>
+                    <input type="text" name="alertMessageClass" id="alertMessageClass" class="form-control mt-1 col" placeholder="alertMessage">
+                </div>
+                <div class="form-group row">
+                    <label for="alertBoxPaddingX" class="col text-light">Alert box width:</label>
+                    <input type="range" name="alertBoxPaddingX" id="alertBoxPaddingX" min="12" max="50" value="12" class="custom-range mt-1 col">
+                </div>
+                <div class="form-group row">
+                    <label for="alertBoxPaddingY" class="col text-light">Alert box height:</label>
+                    <input type="range" name="alertBoxPaddingY" id="alertBoxPaddingY" min="9" max="30" value="9" class="custom-range mt-1 col">
+                </div>
+                <div class="form-group row">
+                    <label for="alertBoxColor" class="col text-light">Alert box color:</label>
+                    <input type="color" name="alertBoxColor" id="alertBoxColor" value="#2ec4b6" class="form-control mt-1 col">
+                </div>
+                <div class="form-group row">
+                    <label for="alertBoxBorderRadius" class="col text-light">Border radius:</label>
+                    <input type="range" name="alertBoxBorderRadius" id="alertBoxBorderRadius" min="0" max="10" value="0.75" step="0.25" class="custom-range mt-1 col">
+                </div>
+                <div class="form-group row">
+                    <label for="alertBoxBorderWidth" class="col text-light">Border width:</label>
+                    <input type="range" name="alertBoxBorderWidth" id="alertBoxBorderWidth" min="0.0" max="4.0" step="0.1" value="0" class="custom-range mt-1 col">
+                </div>
+                <div class="form-group row">
+                    <label for="alertBoxBorderColor" class="col text-light">Alert border color:</label>
+                    <input type="color" name="alertBoxBorderColor" id="alertBoxBorderColor" value="#cbf3f0" class="form-control mt-1 col">
+                </div>
+                <div class="form-group row">
+                    <!-- break into 2 different sliders -->
+                    <label for="alertMessagePadding" class="col text-light">Alert message padding:</label>
+                    <input type="range" name="alertMessagePadding" id="alertMessagePadding" max="8" min="1" value="1.75" step="0.25" class="custom-range mt-1 col">
+                </div>
+                <div class="form-group row">
+                    <label for="alertMessageColor" class="col text-light">Alert message color:</label>
+                    <input type="color" name="alertMessageColor" id="alertMessageColor" value="#cbf3f0" class="form-control mt-1 col">
+                </div>
+            </form>
+
+
+            
+            <form id="buttonStyles" class="bg-dark pl-5 pr-5 d-none">
+                <div class="form-group pt-3 row">
+                    <label for="buttonClass" class="col text-light">Button class?</label>
+                    <input type="text" id="buttonClass" name="buttonClass" class="form-control mt-1 col" placeholder="dismiss">
+                </div>
+                <div class="form-group row">
+                    <label for="buttonText1" class="col text-light">Dismiss text:</label>
+                    <input type="text" id="buttonText1" value="ok" class="form-control mt-1 col" name="buttonText1">
+                </div>
+                <div class="form-group row">
+                    <label for="buttonHeight" class="col text-light">Button height: </label>
+                    <input type="range" name="buttonHeight" id="buttonHeight" max="10" min="1" value="2.5" step="0.5" class="custom-range mt-1 col">
+                </div>
+                <div class="form-group row">
+                    <label for="buttonWidth" class="col text-light">Button width: </label>
+                    <input type="range" name="buttonWidth" id="buttonWidth" max="40" min="1" value="9" class="custom-range mt-1 col">
+                </div>
+                <div class="form-group row">
+                    <label for="buttonBgColor" class="col text-light">Button background: </label>
+                    <input type="color" name="buttonBgColor" id="buttonBgColor" value="#ffbf69" class="form-control mt-1 col">
+                </div>
+                <div class="form-group row">
+                    <label for="buttonBorderWidth" class="col text-light">Button border width: </label>
+                    <input type="range" name="buttonBorderWidth" id="buttonBorderWidth" min="0" max="1" step="0.1" value="0" class="custom-range mt-1 col">
+                </div>
+                <div class="form-group row">
+                    <label for="buttonBorderRadius" class="col text-light">Button border radius: </label>
+                    <input type="range" name="buttonBorderRadius" id="buttonBorderRadius" min="0" max="5" value="0.5" step="0.5" class="custom-range mt-1 col">
+                </div>
+                <div class="form-group row">
+                    <label for="buttonBorderColor" class="col text-light">Button border color: </label>
+                    <input type="color" name="buttonBorderColor" id="buttonBorderColor" value="#ff9f1c" class="form-control mt-1 col">
+                </div>
+                <div class="form-group row">
+                    <label for="buttonTextColor" class="col text-light">Button text color: </label>
+                    <input type="color" name="buttonTextColor" id="buttonTextColor" value="#ffffff" class="form-control mt-1 col">
+                </div>
+            </form>
+            <form id="codeOutputForm" class="bg-dark pl-5 pr-5 d-none">
+                <div class="form-group pt-3">
+                    <div class="form-group">                        
+                        <label for="codeHTML" class="text-light">HTML: </label>
+                        <textarea name="codeHTML" id="codeHTML" cols="50" rows="15" class="form-control mt-1" readonly></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="codeCSS" class="text-light">CSS: </label>
+                        <textarea name="codeCSS" id="codeCSS" cols="50" rows="15" class="form-control mt-1" readonly></textarea>
+                    </div>
+                </div>
+            </form>
+        </article>
+        <article class="outputBox container-fluid mt-5 mb-5" id="alertBoxOut">
+            <span class="alertBox" id="alertBox">
+                <p class="alertMessage" id="alertMessageOut"></p>
+                <button class="dismiss" id="dismiss"></button>
+            </span>
+        </article>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="./scripts/app.js"></script>
+</body>
+</html>
