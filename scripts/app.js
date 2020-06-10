@@ -45,7 +45,6 @@ const $alertBoxClass = $('#alertBoxClass')
 
 
 
-
 $forms.on('submit', (e) => {
     e.preventDefault()
 })
