@@ -120,7 +120,9 @@
                     <input type="color" name="buttonTextColor" id="buttonTextColor" value="#ffffff" class="form-control mt-1 col">
                 </div>
             </form>
-            <form id="codeOutputForm" class="bg-dark pl-5 pr-5 d-none">
+
+
+            <form id="codeOutputForm" class="bg-dark pl-5 pr-5 d-none" action="/alert">
                 <div class="form-group pt-3">
                     <div class="form-group">                        
                         <label for="codeHTML" class="text-light">HTML: </label>
@@ -131,14 +133,24 @@
                         <textarea name="codeCSS" id="codeCSS" cols="50" rows="15" class="form-control mt-1" readonly></textarea>
                     </div>
                 </div>
+                <div class="container-fluid d-flex justify-content-end px-0">
+                    <button type="submit" class="btn btn-outline-light btn-lg" >Save to database!</button>
+                    <a role="button" href="/alerts.html" id="userAlerts" class="btn btn-outline-light btn-lg text-light">See user alerts</a>
+                </div>
             </form>
         </article>
+
+
+
         <article class="outputBox container-fluid mt-5 mb-5" id="alertBoxOut">
             <span class="alertBox" id="alertBox">
                 <p class="alertMessage" id="alertMessageOut"></p>
                 <button class="dismiss" id="dismiss"></button>
             </span>
         </article>
+
+
+        
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

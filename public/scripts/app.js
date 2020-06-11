@@ -39,7 +39,12 @@ const $alertMessageFormGroup = $('#messageClassGroup');
 const $alertMessageClass = $('#alertMessageClass');
 const $alertButtonClass = $('#buttonClass')
 const $alertBoxClass = $('#alertBoxClass')
+const $userAlertButton = $('#userAlerts')
+const $userAlertsOut = $('#userAlertsOut')
 
+let htmlToAppend, cssToAppend, dismissObject, alertBoxObject, alertMessageObject;
+
+let cssToPost = { ...dismissObject, ...alertBoxObject, ...alertMessageObject }
 
 
 
@@ -62,6 +67,21 @@ $outputButton.on('click', () => {
     const dismissButton = document.getElementById('dismiss')
 
     const buttonComputedStyle = getComputedStyle(dismissButton)
+    
+    dismissObject = {
+        'min-height': $buttonHeight.val() + 'rem', 
+        'width': $buttonWidth.val() + 'rem', 
+        'background-color': $buttonBgColor.val(), 
+        'border-radius': $buttonBorderRadius.val() + 'rem', 
+        'border-color': $buttonBorderColor.val(),
+        'color': $buttonTextColor.val(),
+        'border-style': 'solid',
+    }
+    $alertMessage.val() === '' ?   
+    dismissObject['margin-top'] = $dismissButton.css('margin-top') : '' 
+    buttonComputedStyle.borderTopWidth === '0px'? '' : 
+    dismissObject['border-width'] = $buttonBorderWidth.val() + 'rem';
+
     const dismissString = `{
     min-height: ${$buttonHeight.val()}rem; 
     width: ${$buttonWidth.val()}rem; 
@@ -73,6 +93,19 @@ $outputButton.on('click', () => {
     border-width: ${$buttonBorderWidth.val()}rem;
     border-style: solid;`}
 }`
+
+    alertBoxObject = {
+        'background-color': $alertColor.val(), 
+        'border-color': $alertBorderColor.val(), 
+        'color': $alertMessageColor.val(), 
+        'width': $alertWidth.val() + 'rem', 
+        'height': $alertHeight.val() + 'rem', 
+        'border-radius': $alertBorderRadius.val() + 'rem',
+        'font-family': $fontFamilySelection.val(),
+        'text-align': 'center', 
+        'border-style': 'solid',
+    }
+    $alertBorderWidth.val() == 0 ? '' : alertBoxObject['border-width'] = $alertBorderWidth.val() + 'rem';
 
     const alertBoxString = `{
     background-color: ${$alertColor.val()}; 
@@ -87,19 +120,24 @@ $outputButton.on('click', () => {
     border-style: solid;`}
 }`
 
+    alertMessageObject = {
+        'padding-top': $alertMessagePadding.val() + 'rem',
+        'padding-bottom': $alertMessagePadding.val() + 'rem',
+    }
 
     const alertMessageString = `{
     padding-top: ${$alertMessagePadding.val()}rem;
     padding-bottom: ${$alertMessagePadding.val()}rem;
 }`
 
-    $outputHTML.text(
-`<div class="${$alertBoxClass.val() === '' ? "alertBox" : $alertBoxClass.val()}">${$alertMessage.val() === '' ? '' : `
-    <p class="${$alertMessageClass.val() === '' ? "alertMessage" : $alertMessageClass.val()}">${$alertMessage.val()}</p>`}
-    <button class="${$alertButtonClass.val() === '' ? "dismiss" : $alertButtonClass.val()}">${$dismissButtonText.val()}</button>
-</div>`)
 
-    $outputCSS.text(
+htmlToAppend = 
+`<div class="${$alertBoxClass.val() === '' ? "alertBox" : $alertBoxClass.val()}">${$alertMessage.val() === '' ? '' : `
+<p class="${$alertMessageClass.val() === '' ? "alertMessage" : $alertMessageClass.val()}">${$alertMessage.val()}</p>`}
+<button class="${$alertButtonClass.val() === '' ? "dismiss" : $alertButtonClass.val()}">${$dismissButtonText.val()}</button>
+</div>`
+
+cssToAppend = 
 `html {
     font-size: 62.5%;
 }
@@ -112,9 +150,20 @@ body {
 
 .${$alertButtonClass.val() === '' ? 'dismiss' :  $alertButtonClass.val()} ${dismissString} ${$alertMessage.val() === '' ? '' : `
 
-.${$alertMessageClass.val() === '' ? 'alertMessage' : $alertMessageClass.val()} ${alertMessageString}`}`)
+.${$alertMessageClass.val() === '' ? 'alertMessage' : $alertMessageClass.val()} ${alertMessageString}`}`
+
+    $outputHTML.text(htmlToAppend)
+
+    $outputCSS.text(cssToAppend)
 
 })
+
+
+
+$outputForm.on('submit', () => {
+    postUserAlert()
+})
+
 
 
 $fontFamilySelection.on('change', () => {
@@ -196,8 +245,18 @@ $buttonTextColor.on('input', () => {
     changeColor($dismissButton, 'color', $buttonTextColor)
 })
 
+$userAlertButton.on('click', () => {
+    getUserAlerts()
+})
 
-
+$userAlertButton.on('focus', () => {
+    console.log('focused')
+}).hover(() => {
+    $userAlertButton.toggleClass('text-light')
+},
+() => {
+    $userAlertButton.toggleClass('text-light')
+})
 
 
 
@@ -273,10 +332,46 @@ const showClassInput = () => {
     }
 }
 
+const getUserAlerts = () => {
+    fetch('/alerts').then(res => res.json()).then(data => {
+        console.log(data)
+        data.forEach(element => {
+            console.log(element.alertcss, decodeURIComponent(element.alerthtml))
+            $( 'element[alerthtml]' ).appendTo($userAlertsOut)
+        });
+    })
+}
+
+
+const postUserAlert = () => {
+    fetch('/alert/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            user: 'Sally',
+            alertname: `sally's alert`,
+            alerthtml: encodeURIComponent(htmlToAppend),
+            alertcss: {
+                button: dismissObject,
+                alertBox: alertBoxObject,
+                alertMessage: alertMessageObject
+            },
+        })
+        
+    }).then(data => {
+        console.log(data)
+    })
+}
+
+
+
 
 
 
 getPrev = () => {
+
     getFontFamily($alertBox);
     changeColor($alertBox, 'background-color', $alertColor);
     changeColor($alertBox, 'border-color', $alertBorderColor);
@@ -301,8 +396,12 @@ getPrev = () => {
 }
 
 $( document ).ready(() => {
-    getPrev();
-    getCurrentForm();
+    if (window.location.pathname !== '/alerts.html') {
+        getPrev();
+        getCurrentForm();
+    } else {
+        getUserAlerts()
+    }
 })
 
 //going to need a foreach for the inputs to add event listeners for each input in a functional way

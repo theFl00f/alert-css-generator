@@ -5,18 +5,18 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var alertsRouter = require('./routes/alerts');
 
 var app = express();
 
 //mongoose setup
 
-var mongoose = require('mongoose');
+var Mongoose = require('mongoose');
 var url = 'mongodb://username:passw0rd@ds239009.mlab.com:39009/heroku_szr6bxv6'
 
-mongoose.connect(url, { useNewUrlParser: true })
+Mongoose.connect(url, { useNewUrlParser: true })
 
-var db = mongoose.connection
+var db = Mongoose.connection
 
 db.once('open', _ => {
   console.log('database connected: ', url)
@@ -33,8 +33,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/', indexRouter);
+app.use('/', alertsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
