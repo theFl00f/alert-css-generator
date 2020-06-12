@@ -43,6 +43,7 @@ const $alertBoxClass = $('#alertBoxClass');
 const $userAlertButton = $('#userAlerts');
 const $userAlertsOut = $('#userAlertsOut');
 const $alertsPage = $('#alertsPage');
+const $homeButton = $('#home')
 const $userAlertsBox = $('article.userAlerts > div');
 const $userAlertsButton = $('article.userAlerts button');
 const $userAlertsMessage = $('article.userAlerts > div > div');
@@ -247,7 +248,14 @@ $userAlertButton.on('click', () => {
     getUserAlerts()
 })
 
-
+$homeButton.on('focus', () => {
+    console.log('focused')
+}).hover(() => {
+    $homeButton.toggleClass('text-light')
+},
+() => {
+    $homeButton.toggleClass('text-light')
+})
 
 
 
@@ -322,15 +330,15 @@ const showClassInput = () => {
 //**this should be executing on the bottom event listeners
 
 const getUserAlerts = () => {
+    if (window.location.pathname !== '/alerts.html') {
+        window.location.href = 'alerts.html'
+    }
     fetch('/api/alerts').then(res => res.json()).then(data => {
-        if (window.location.pathname !== '/alerts.html') {
-            window.location.href = 'alerts.html'
-        }
         data.forEach((object ) => {
             const { alerthtml, _id, alertcss } = object;
             console.log(decodeURIComponent(alertcss.button))            
             $userAlertsOut.append(
-`<article class="userAlerts ${_id}">
+`<article class="userAlerts ${_id} w-25 mx-4 my-5 d-flex align-items-center justify-content-center">
     <div style="${decodeURIComponent(alertcss.alertBox)}">
         ${alerthtml.alertMessage === '' ? '' : `
         <div style="${decodeURIComponent(alertcss.alertMessage)}">

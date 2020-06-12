@@ -17,10 +17,13 @@
     <div class="wrapper container-fluid">
         <article class="inputBox roboto container-fluid pt-5">
             <h1 class="display-2 text-center mb-3">&lt;alert css generator/&gt;</alert></h1>
-            <nav class="btn-group btn-group-lg">
-                <button id="alertBoxForm" class="active btn btn-dark">Alert Box</button>
-                <button id="buttonForm" class="btn btn-light">Buttons</button>
-                <button id="codeOutput" class="btn btn-light">Output</button>
+            <nav class="w-100">
+                <div class="btn-group btn-group-lg">    
+                    <button id="alertBoxForm" class="active btn btn-dark">Alert Box</button>
+                    <button id="buttonForm" class="btn btn-light">Buttons</button>
+                    <button id="codeOutput" class="btn btn-light">Output</button>
+                </div>
+                <button type="button" id="userAlerts" class="btn btn-light btn-lg ml-auto">See user alerts</button>
             </nav>
             <form id="alertBoxStyles" class="bg-dark pl-5 pr-5 rounded-bottom">
                 <div class="form-group pt-3 row">
@@ -135,7 +138,6 @@
                 </div>
                 <div class="container-fluid d-flex justify-content-end px-0">
                     <button type="submit" class="btn btn-outline-light btn-lg" >Save to database!</button>
-                    <button type="button" id="userAlerts" class="btn btn-outline-light btn-lg">See user alerts</button>
                 </div>
             </form>
         </article>
