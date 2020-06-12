@@ -338,7 +338,7 @@ const getUserAlerts = () => {
             const { alerthtml, _id, alertcss } = object;
             console.log(decodeURIComponent(alertcss.button))            
             $userAlertsOut.append(
-`<article class="userAlerts ${_id} w-25 mx-4 my-5 d-flex align-items-center justify-content-center">
+`<article class="userAlerts ${_id} mx-4 my-5 d-flex align-items-center justify-content-center">
     <div style="${decodeURIComponent(alertcss.alertBox)}">
         ${alerthtml.alertMessage === '' ? '' : `
         <div style="${decodeURIComponent(alertcss.alertMessage)}">
