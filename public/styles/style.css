@@ -284,3 +284,8 @@ textarea#codeCSS, textarea#codeHTML {
 .roboto {
   font-family: "Roboto", sans-serif;
 }
+
+h4 span {
+  color: #5c4d3c;
+  font-weight: bold;
+}

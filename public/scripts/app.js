@@ -369,7 +369,7 @@ const getUserAlerts = () => {
     </div>
     <div class="text-center my-3">    
         <h3 class="h4">"${alertname}"</h3>
-        <h4 class="h5">By ${user}</h4>
+        <h4 class="h5">By <span>${user}</span></h4>
     </div>
 </article>
 `)
