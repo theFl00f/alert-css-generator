@@ -159,11 +159,13 @@ body = {
 })
 
 
-
+//where the space is below: add button to close dialogue, position absolute to the alert box
 $outputForm.on('submit', () => {
     $outputForm.append(`
-    <div style="background-color:#31383B;border-color:#062533;color:#C1C7C9;width:30rem;height:16rem;border-radius:2.75rem;font-family:roboto;text-align:center;border-style:solid;border-width:0.8rem;position:absolute;top:21%;left:50%;margin-left:-15rem">
-        <div style="padding-top:2rem;padding-bottom:1rem">
+    <div style="background-color:#31383B;border-color:#062533;color:#C1C7C9;width:30rem;height:16rem;border-radius:2.75rem;font-family:roboto;text-align:center;border-style:solid;border-width:0.8rem;position:absolute;top:21%;left:50%;margin-left:-15rem" id="addAlertDialogue">
+    
+    
+        <div style="padding-top:2rem;padding-bottom:.5rem">
             <div class="form-group mx-4">
                 <label for="creator" class="sr-only">Creator name:</label>
                 <input type="text" name="alertBoxColor" id="creator" placeholder="Creator name" class="form-control">
@@ -173,9 +175,18 @@ $outputForm.on('submit', () => {
                 <input type="text" name="alertBoxColor" id="newAlertName" placeholder="Alert name" class="form-control mt-1">
             </div>
         </div>
-        <button id="confirmSubmit" style="min-height:3.5rem;width:20rem;background-color:#6F777A;border-radius:1.5rem;border-color:#062533;color:#ffffff;border-style:solid;border-width:0.5rem" onclick="postUserAlert()">
-        add to database
-        </button>
+        <div class="btn-group w-100" role="group">
+            <button id="confirmSubmit" style="min-height:3.5rem;width:12rem;background-color:#6F777A;border-radius:1.5rem;border-color:#062533;color:#ffffff;border-style:solid;border-width:0.5rem" 
+            class="btn ml-4 mr-2"
+            onclick="postUserAlert()">
+            add to database
+            </button>
+            <button id="closeSubmit" style="min-height:3.5rem;width:12rem;background-color:#6F777A;border-radius:1.5rem;border-color:#062533;color:#ffffff;border-style:solid;border-width:0.5rem" 
+            onclick="closeAlert()"
+            class="btn mr-4 ml-2">
+            cancel
+            </button>
+        </div>
     </div>
     `)
 
@@ -345,6 +356,12 @@ const showClassInput = () => {
         $alertMessageFormGroup.show()
     }
 }
+
+const closeAlert = () => {
+    const $addAlertDialogue = $('#addAlertDialogue')
+    $addAlertDialogue.remove()
+}
+
 
 //**this should be executing on the bottom event listeners
 
