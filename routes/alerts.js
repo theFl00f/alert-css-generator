@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var path = require('path');
 var Mongoose = require('mongoose');
 var Schema = Mongoose.Schema;
 
@@ -38,6 +37,15 @@ router.get('/api/alerts', getAlerts);
 // **GET alerts html
 router.get('/alerts.html', getAlerts, function (req, res) {
   res.render('alerts.html')
+})
+
+router.get('/alert/:id', async function(req, res) {
+  try {
+    var alert = await AlertModel.findById(req.params.id).exec();
+    res.send(alert)
+  } catch (err) {
+    console.log(err)
+  }
 })
 
 //POST alert

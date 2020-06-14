@@ -162,7 +162,7 @@ body = {
 //where the space is below: add button to close dialogue, position absolute to the alert box
 $outputForm.on('submit', () => {
     $outputForm.append(`
-    <div style="background-color:#31383B;border-color:#062533;color:#C1C7C9;width:30rem;height:16rem;border-radius:2.75rem;font-family:roboto;text-align:center;border-style:solid;border-width:0.8rem;position:absolute;top:21%;left:50%;margin-left:-15rem" id="addAlertDialogue">
+    <div style="background-color:#31383B;border-color:#062533;color:#C1C7C9;width:30rem;height:18.25rem;border-radius:2.75rem;font-family:roboto;text-align:center;border-style:solid;border-width:0.8rem;position:absolute;top:21%;left:50%;margin-left:-15rem" id="addAlertDialogue">
     
     
         <div style="padding-top:2rem;padding-bottom:.5rem">
@@ -174,6 +174,7 @@ $outputForm.on('submit', () => {
                 <label for="newAlertName" class="sr-only">Alert name:</label>
                 <input type="text" name="alertBoxColor" id="newAlertName" placeholder="Alert name" class="form-control mt-1">
             </div>
+            <p class="mt-3 mb-3">default if empty: 'untitled' by anonymous</p>
         </div>
         <div class="btn-group w-100" role="group">
             <button id="confirmSubmit" style="min-height:3.5rem;width:12rem;background-color:#6F777A;border-radius:1.5rem;border-color:#062533;color:#ffffff;border-style:solid;border-width:0.5rem" 
@@ -380,13 +381,18 @@ const getUserAlerts = () => {
         <div style="${decodeURIComponent(alertcss.alertMessage)}">
             ${decodeURIComponent(alerthtml.alertMessage)}
         </div>`}
-        <button style="${decodeURIComponent(alertcss.button)}">
+        <button tabindex="-1" style="${decodeURIComponent(alertcss.button)}">
             ${decodeURIComponent(alerthtml.button)}
         </button>
     </div>
-    <div class="text-center my-3">    
-        <h3 class="h4">"${alertname}"</h3>
-        <h4 class="h5">By <span>${user}</span></h4>
+    <div class="my-3 d-flex w-100">
+        <div class="text-center mr-auto flex-shrink-1">    
+            <h3 class="h4">"${alertname}"</h3>
+            <h4 class="h5">By <span>${user}</span></h4>
+        </div>
+        <a class="ml-auto pl-4 seeMore" href="/alert/${_id}" id=${_id}>
+            <i class="fas fa-angle-down "></i>
+        </a>
     </div>
 </article>
 `)
@@ -426,6 +432,16 @@ const postUserAlert = () => {
     })
 }
 
+$( document ).on('click', 'a.seeMore', function (e) {
+    e.preventDefault()
+    fetch('/alert/' + $(this).attr('id'), { id: $(this).attr('id') })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+    }).catch(err => {
+        console.log(err)
+    })
+})
 
 
 
