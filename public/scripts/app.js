@@ -437,7 +437,7 @@ $( document ).on('click', 'a.seeMore', function (e) {
     fetch('/alert/' + $(this).attr('id'), { id: $(this).attr('id') })
     .then(res => res.json())
     .then(data => {
-        console.log(data)
+        console.log(JSON.stringify(data))
     }).catch(err => {
         console.log(err)
     })
