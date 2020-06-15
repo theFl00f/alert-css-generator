@@ -47,7 +47,7 @@ const $homeButton = $('#home')
 const $userAlertsBox = $('article.userAlerts > div');
 const $userAlertsButton = $('article.userAlerts button');
 const $userAlertsMessage = $('article.userAlerts > div > div');
-const $confirmSubmit = $('#confirmSubmit')
+const $confirmSubmit = $('#confirmSubmit');
 
 let htmlToAppend, cssToAppend, dismissInlineCss, alertBoxObject, alertMessageObject, htmlClasses;
 
@@ -418,12 +418,14 @@ const postUserAlert = () => {
             alertname: newAlertName,
             alerthtml: {
                 button: encodeURIComponent(htmlContent.button),
-                alertMessage: encodeURIComponent(htmlContent.alertMessage)
+                alertMessage: encodeURIComponent(htmlContent.alertMessage),
+                complete: encodeURIComponent(htmlToAppend),
             }, 
             alertcss: {
                 button: encodeURIComponent(dismissInlineCss),
                 alertBox: encodeURIComponent(alertBoxObject),
-                alertMessage: encodeURIComponent(alertMessageObject)
+                alertMessage: encodeURIComponent(alertMessageObject),
+                complete: encodeURIComponent(cssToAppend)
             },
         })
         
@@ -433,11 +435,23 @@ const postUserAlert = () => {
 }
 
 $( document ).on('click', 'a.seeMore', function (e) {
-    e.preventDefault()
+    e.preventDefault();
+    const $seeMoreButtons = $('.seeMore')
+    $seeMoreButtons.each(function() {
+        $(this).parent().parent().removeClass('w-100');
+        $(this).parent().addClass('w-100')
+    })
+    $(this).parent().parent().addClass('w-100')
+    $(this).parent().removeClass('w-100')
     fetch('/alert/' + $(this).attr('id'), { id: $(this).attr('id') })
     .then(res => res.json())
-    .then(data => {
-        console.log(JSON.stringify(data))
+    .then(({ alerthtml, alertcss }) => {
+        const rawHtml = JSON.stringify(decodeURIComponent(alerthtml.complete))
+        const rawCss = JSON.stringify(decodeURIComponent(alertcss.complete))
+
+        //alter regex to replace \ with ' ' and \n with a line break
+        console.log(rawHtml.replaceAll(/([\\])n+|([\\])/g, ''))
+        console.log(rawCss.replaceAll(/([\\])n+|([\\])/g, ''))
     }).catch(err => {
         console.log(err)
     })

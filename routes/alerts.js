@@ -10,11 +10,13 @@ var AlertSchema = new Schema({
     button: String,
     alertBox: String,
     alertMessage: String,
+    complete: String,
   },
   alertcss: {
     button: String,
     alertBox: String,
     alertMessage: Object,
+    complete: String,
   },
 }, { timestamps: { createdAt: 'created_at' } })
 
