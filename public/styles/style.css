@@ -230,6 +230,13 @@ body {
   font-size: 1.4rem;
 }
 
+#alertsPage form {
+  height: 30rem;
+}
+#alertsPage #codeCSS, #alertsPage #codeHTML {
+  height: 11rem;
+}
+
 .wrapper {
   max-width: 1300px;
   width: 90%;

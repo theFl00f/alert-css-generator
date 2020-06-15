@@ -447,19 +447,19 @@ $( document ).on('click', 'a.seeMore', function (e) {
     $(this).hasClass('active') ? 
     $(this).parent().parent().addClass('w-100').append(`
     <form id="codeOutputForm" class="bg-dark pl-5 pr-5 w-100">
-    <div class="form-group pt-3">
-        <div class="form-group">                        
-            <label for="codeHTML" class="text-light">HTML: </label>
-            <textarea name="codeHTML" id="codeHTML" cols="50" rows="15" class="form-control mt-1" readonly></textarea>
+        <div class="form-group pt-3">
+            <div class="form-group">                        
+                <label for="codeHTML" class="text-light">HTML: </label>
+                <textarea name="codeHTML" id="codeHTML" cols="50" rows="15" class="form-control mt-1" readonly></textarea>
+            </div>
+            <div class="form-group">
+                <label for="codeCSS" class="text-light">CSS: </label>
+                <textarea name="codeCSS" id="codeCSS" cols="50" rows="15" class="form-control mt-1" readonly></textarea>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="codeCSS" class="text-light">CSS: </label>
-            <textarea name="codeCSS" id="codeCSS" cols="50" rows="15" class="form-control mt-1" readonly></textarea>
-        </div>
-    </div>
-</form>`)
-:
-$singleCodeOutput.remove()
+    </form>`)
+    :
+    $singleCodeOutput.remove()
     $(this).parent().removeClass('w-100')
     fetch('/alert/' + $(this).attr('id'), { id: $(this).attr('id') })
     .then(res => res.json())
@@ -467,18 +467,12 @@ $singleCodeOutput.remove()
         const rawHtml = JSON.stringify(decodeURIComponent(alerthtml.complete))
         const rawCss = JSON.stringify(decodeURIComponent(alertcss.complete))
         const singleHtmlToAppend = rawHtml.replaceAll(/([\\])n+/g, `
-    `).replaceAll(/([\\])/g, ' ')
+    `).replaceAll(/([\\])/g, '').slice(1, -1)
     const singleCssToAppend = rawCss.replaceAll(/([\\])n+/g, `
     `)
-    .replaceAll(/([\\])/g, ' ')
-        //alter regex to replace \ with ' ' and \n with a line break
-        // console.log(rawHtml
-        //     .replaceAll(/([\\])n+/g, `
-        // `)
-        // .replaceAll(/([\\])/g, ' '))
-        // console.log(rawCss.replaceAll(/([\\])n+/g, `
-        // `)
-        // .replaceAll(/([\\])/g, ' '))
+    .replaceAll(/([\\])/g, ' ').slice(1, -1)
+    $('#codeHTML').val(singleHtmlToAppend)
+    $('#codeCSS').val(singleCssToAppend)
     }).catch(err => {
         console.log(err)
     })
