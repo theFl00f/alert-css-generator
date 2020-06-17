@@ -18,13 +18,38 @@
         <article class="inputBox roboto container-fluid pt-5">
             <h1 class="display-2 text-center mb-3">&lt;alert css generator/&gt;</alert></h1>
             <nav class="w-100">
-                <div class="btn-group btn-group-lg">    
-                    <button id="alertBoxForm" class="active btn btn-dark">Alert Box</button>
+                <div class="btn-group btn-group-lg">  
+                    <button class="btn-light btn">Palette</button>  
+                    <button id="alertBoxForm" class="btn btn-light">Alert Box</button>
                     <button id="buttonForm" class="btn btn-light">Buttons</button>
                     <button id="codeOutput" class="btn btn-light">Output</button>
                 </div>
                 <button type="button" id="userAlerts" class="btn btn-light btn-lg ml-auto">See user alerts</button>
             </nav>
+            <form action="#" id="colorPalette" class="bg-dark pl-5 pr-5 rounded-bottom container-fluid text-center d-flex align-items-center">
+                <div class="row w-100 mx-2">
+                    <div class="color1 col d-flex flex-column align-items-center">
+                        <div class="colorBox"></div>
+                        <p class="text-light mt-2">Color 1</p>
+                    </div>
+                    <div class="color2 col d-flex flex-column align-items-center">
+                        <div class="colorBox"></div>
+                        <p class="text-light mt-2">Color 2</p>
+                    </div>
+                    <div class="color3 col d-flex flex-column align-items-center">
+                        <div class="colorBox"></div>
+                        <p class="text-light mt-2">Color 3</p>
+                    </div>
+                    <div class="color4 col d-flex flex-column align-items-center">
+                        <div class="colorBox"></div>
+                        <p class="text-light mt-2">Color 4</p>
+                    </div>
+                    <div class="color5 col d-flex flex-column align-items-center">
+                        <div class="colorBox"></div>
+                        <p class="text-light mt-2">Color 5</p>
+                    </div>
+                </div>
+            </form>
             <form id="alertBoxStyles" class="bg-dark pl-5 pr-5 rounded-bottom">
                 <div class="form-group pt-3 row">
                     <label for="alertBoxClass" class="col text-light">Alert box class name?</label>
@@ -157,6 +182,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="./scripts/tinycolor.js"></script>
+
 <script src="./scripts/app.js"></script>
 </body>
 </html>

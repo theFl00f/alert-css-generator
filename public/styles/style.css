@@ -296,3 +296,8 @@ h4 span {
   color: #5c4d3c;
   font-weight: bold;
 }
+
+.colorBox {
+  height: 8rem;
+  width: 8rem;
+}
