@@ -24,7 +24,8 @@ const $alertMessagePadding = $('#alertMessagePadding');
 const $navButton = $('nav button');
 const $boxNavButton = $('#alertBoxForm');
 const $buttonNavButton = $('#buttonForm');
-const $outputButton = $('#codeOutput')
+const $outputButton = $('#codeOutput');
+const $colorButton = $('#colorPalette')
 const $dismissButtonText = $('#buttonText1');
 const $dismissButton = $('#dismiss');
 const $buttonWidth = $('#buttonWidth');
@@ -48,10 +49,22 @@ const $userAlertsBox = $('article.userAlerts > div');
 const $userAlertsButton = $('article.userAlerts button');
 const $userAlertsMessage = $('article.userAlerts > div > div');
 const $confirmSubmit = $('#confirmSubmit');
+const $color1 = $('.color1 .colorBox');
+const $colorBox = $('.colorBox')
 
 let htmlToAppend, cssToAppend, dismissInlineCss, alertBoxObject, alertMessageObject, htmlClasses;
 
 let cssToPost = { ...dismissInlineCss, ...alertBoxObject, ...alertMessageObject }
+
+
+
+const randomColor = tinycolor.random()
+;
+
+$colorBox.each(function() {
+    $(this).css('background-color', tinycolor.random().toHex8String())
+})
+// $color1.css('background-color', randomColor);
 
 
 
@@ -339,13 +352,15 @@ const getMessage = ( target, source ) => {
 const getCurrentForm = () => {
     $forms.removeClass('d-block').addClass('d-none');
     if ($boxNavButton.hasClass('active')) {
-        $alertBoxForm.addClass('d-block');
+        $alertBoxForm.addClass('d-block').removeClass('d-none');
     } 
     else if ($buttonNavButton.hasClass('active')) {
-        $buttonForm.addClass('d-block');
+        $buttonForm.addClass('d-block').removeClass('d-none');
     }
-    else {        
-        $outputForm.addClass('d-block');
+    else if ($outputButton.hasClass('active')) {        
+        $outputForm.addClass('d-block').removeClass('d-none');
+    } else {
+        $colorButton.addClass('d-block').removeClass('d-none')
     }
 }
 
