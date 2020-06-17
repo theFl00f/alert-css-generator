@@ -26,9 +26,9 @@ This is MEJN, using jQuery. Styling for forms, layout and typography with Bootst
 * Output formatted HTML and CSS
 * Save your design to the database, titled or anonymous
 * See all user alerts that have been saved!
+* Steal others designs, the HTML and CSS are saved too! 👀
 ## Upcoming Features
 ### in progress
-* adding route for seeing HTML and CSS of database alerts
 ### the backburner
 * color palette generator
 * randomly generated names for untitled alerts
