@@ -56,7 +56,6 @@ let cssToPost = { ...dismissInlineCss, ...alertBoxObject, ...alertMessageObject 
 
 
 
-
 $forms.on('submit', (e) => {
     e.preventDefault()
 })
@@ -367,13 +366,12 @@ const closeAlert = () => {
 //**this should be executing on the bottom event listeners
 
 const getUserAlerts = () => {
-    if (window.location.pathname !== '/alerts.html') {
+    if (window.location.pathname !== '/alerts.html' || window.location.hash.includes('id')) {
         window.location.href = 'alerts.html'
     }
     fetch('/api/alerts').then(res => res.json()).then(data => {
         data.forEach((object ) => {
             const { alerthtml, _id, alertcss, alertname, user } = object;
-            console.log(decodeURIComponent(alertcss.button))            
             $userAlertsOut.append(
 `<article class="userAlerts ${_id} mx-4 mt-5 d-flex flex-column align-items-center justify-content-between">
     <div style="${decodeURIComponent(alertcss.alertBox)}" class="mb-5">
@@ -404,10 +402,8 @@ const getUserAlerts = () => {
 const postUserAlert = () => {
     const $creator = $('#creator');
     const $newAlertName = $('#newAlertName');
-    console.log($creator.val(), $newAlertName.val());
     const creator = $creator.val() === '' ? 'Anonymous' : $creator.val();
     const newAlertName = $newAlertName.val() === '' ? 'Untitled' : $newAlertName.val();
-    console.log(creator, newAlertName)
     fetch('/api/alert/', {
         method: 'POST',
         headers: {
@@ -436,6 +432,13 @@ const postUserAlert = () => {
 
 $( document ).on('click', 'a.seeMore', function (e) {
     e.preventDefault();
+    $(this).toggleClass('open')
+    console.log($(this).hasClass('open'))
+    if ($(this).hasClass('open')) {
+        window.location.replace('#id=' + $(this).attr('id'))
+    } else if (!$(this).hasClass('open')) {
+        window.location.replace('#') 
+    }
     const $seeMoreButtons = $('.seeMore')
     const $singleCodeOutput = $('#codeOutputForm')
     $(this).toggleClass('active')
@@ -511,7 +514,9 @@ $( document ).ready(() => {
         getPrev();
         getCurrentForm();
     } else {
-        getUserAlerts()
+        if (window.location.pathname === '/alerts.html') {
+            getUserAlerts()
+        }
     }
 })
 
