@@ -62,7 +62,7 @@ const randomColor = tinycolor.random()
 ;
 
 $colorBox.each(function() {
-    $(this).css('background-color', tinycolor.random().toHex8String())
+    $(this).css('background-color', randomColor.toHex8String())
 })
 // $color1.css('background-color', randomColor);
 
