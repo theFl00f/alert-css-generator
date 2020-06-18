@@ -4,8 +4,8 @@ https://alert-css-generator.herokuapp.com/
 Welcome to a visual development tool for alerts/modals.
 ## How to use this app
 1. Clone repo.
-1. Install dependencies with "npm install"
-1. To run, use command "npm run start-dev"
+1. Install dependencies with ```npm install``` and ```npm update```
+1. To run, use command ```npm run start-dev```
 
 ## A History...
 I created this because I love the idea of custom alerts, but when it comes to adding alert styling at the end of a project, I tend to end up trimming this plan off the deliverable, due to time restrictions and it just taking a bit too long. So, I decided to make this app to allow customization visually and quickly, while allowing you to add items to the database!
