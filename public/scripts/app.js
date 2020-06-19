@@ -51,7 +51,7 @@ const $userAlertsButton = $('article.userAlerts button');
 const $userAlertsMessage = $('article.userAlerts > div > div');
 const $confirmSubmit = $('#confirmSubmit');
 const $color1 = $('.color1 .colorBox');
-const $colorBox = $('.colorBox');
+const $colorBox = $('input.colorBox');
 const $analogInput = $('#analogous');
 const $monochromeInput = $('#monochrome');
 const $splitInput = $('#split')
@@ -86,45 +86,52 @@ const generateTriad = (color) => {
 const analogous = [...generateAnalog(color)];
 
 
-$('#colorPalette input').on('click', function () {
+$('input:radio').on('click', function () {
     changeColorBoxes($( this ).val())
-    console.log()
 })
+
+
 
 const changeColorBoxes = (colorCombo) => {
     if (colorCombo === undefined) {
-        colorCombo = 'analogous'
-    }
-    for (let i = 0; i < colorBoxes.length; i++) {
-        console.log(i);
-        console.log(colorBoxes[i]);
-        console.log(colorCombo);
-        // colorBoxes[i].style.backgroundColor = colorCombo.toHex8String()
-        if (colorCombo === 'monochrome') {
+        console.log('undefined')
+        for (let i = 0; i < colorBoxes.length; i++) {
             color = tinycolor.random()
-            const monochrome = [...generateMonochrome(color)];
-            colorBoxes[i].style.backgroundColor = monochrome[i].toHex8String()
+            colorBoxes[i].value = color.toHexString();
+            colorBoxes[i].style.backgroundColor = color.toHexString();
         }
-        else if (colorCombo === 'split') {
-            color = tinycolor.random()
-            const split = [...generateSplit(color)];
-            console.log(split)
-            split.push(tinycolor('white'), tinycolor('white'))
-            console.log(split)
-            colorBoxes[i].style.backgroundColor = split[i].toHex8String()
-        }
-        else if (colorCombo === 'triad') {
-            color = tinycolor.random()
-            const triad = [...generateTriad(color)]
-            triad.push(tinycolor('white'), tinycolor('white'))
-            colorBoxes[i].style.backgroundColor = triad[i].toHex8String()
-        }
-        else if (colorCombo === 'analogous') {
-            color = tinycolor.random()
-            const analogous = [...generateAnalog(color)];
-            colorBoxes[i].style.backgroundColor = analogous[i].toHex8String()
-        }
+    } 
+    else {
+        for (let i = 0; i < colorBoxes.length; i++) {
+            if (colorCombo === 'monochrome') {
+                color = tinycolor.random()
+                const monochrome = [...generateMonochrome(color)];
+                colorBoxes[i].value = monochrome[i].toHexString()
+                colorBoxes[i].style.backgroundColor = monochrome[i].toHexString();
 
+            }
+            else if (colorCombo === 'split') {
+                color = tinycolor.random()
+                const split = [...generateSplit(color)];
+                split.push(tinycolor('grey'), tinycolor('grey'))
+                colorBoxes[i].value = split[i].toHexString()
+                colorBoxes[i].style.backgroundColor = split[i].toHexString();
+            }
+            else if (colorCombo === 'triad') {
+                color = tinycolor.random()
+                const triad = [...generateTriad(color)]
+                triad.push(tinycolor('grey'), tinycolor('grey'))
+                colorBoxes[i].value = triad[i].toHexString()
+                colorBoxes[i].style.backgroundColor = triad[i].toHexString();
+            }
+            else if (colorCombo === 'analogous') {
+                color = tinycolor.random()
+                const analogous = [...generateAnalog(color)];
+                colorBoxes[i].value = analogous[i].toHexString()
+                colorBoxes[i].style.backgroundColor = analogous[i].toHexString();
+            }
+    
+        }
     }
 }
 

@@ -63,4 +63,6 @@ h4 span {
 .colorBox {
     height: 8rem;
     width: 8rem;
+    border: none;
+    clip-path: circle(8rem at center);
 }
