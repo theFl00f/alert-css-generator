@@ -19,14 +19,32 @@
             <h1 class="display-2 text-center mb-3">&lt;alert css generator/&gt;</alert></h1>
             <nav class="w-100">
                 <div class="btn-group btn-group-lg">  
-                    <button class="btn-light btn">Palette</button>  
+                    <button id="paletteForm" class="btn-dark btn active">Palette</button>  
                     <button id="alertBoxForm" class="btn btn-light">Alert Box</button>
                     <button id="buttonForm" class="btn btn-light">Buttons</button>
                     <button id="codeOutput" class="btn btn-light">Output</button>
                 </div>
                 <button type="button" id="userAlerts" class="btn btn-light btn-lg ml-auto">See user alerts</button>
             </nav>
-            <form action="#" id="colorPalette" class="bg-dark pl-5 pr-5 rounded-bottom container-fluid text-center d-flex align-items-center">
+            <form action="#" id="colorPalette" class="bg-dark pl-5 pr-5 pt-5 rounded-bottom container-fluid text-center d-flex flex-column">
+                <div id="userColorInput" class="my-5">
+                    <div class="form-check-inline form-check">
+                        <input type="radio" class="form-check-input" id="analogous" value="analogous" name="colorSelection">
+                        <label for="analogous" class="form-check-label text-light">Analogous</label>
+                    </div>
+                    <div class="form-check-inline form-check">
+                        <input type="radio" class="form-check-input" id="monochrome" value="monochrome" name="colorSelection">
+                        <label for="monochrome" class="form-check-label text-light">Monochromatic</label>
+                    </div>
+                    <div class="form-check-inline form-check">
+                        <input type="radio" class="form-check-input" id="split" value="split" name="colorSelection">
+                        <label for="split" class="form-check-label text-light">Split Compliment</label>
+                    </div>
+                    <div class="form-check-inline form-check">
+                        <input type="radio" class="form-check-input" id="triad" value="triad" name="colorSelection">
+                        <label for="triad" class="form-check-label text-light">Triad</label>
+                    </div>
+                </div>
                 <div class="row w-100 mx-2">
                     <div class="color1 col d-flex flex-column align-items-center">
                         <div class="colorBox"></div>

@@ -16,6 +16,7 @@ const $forms = $('form');
 const $alertBoxForm = $('#alertBoxStyles');
 const $buttonForm = $('#buttonStyles');
 const $outputForm = $('#codeOutputForm');
+const $colorForm = $('#colorPalette');
 const $alertWidth = $('#alertBoxPaddingX');
 const $alertHeight = $('#alertBoxPaddingY');
 const $alertBorderWidth = $('#alertBoxBorderWidth');
@@ -50,7 +51,11 @@ const $userAlertsButton = $('article.userAlerts button');
 const $userAlertsMessage = $('article.userAlerts > div > div');
 const $confirmSubmit = $('#confirmSubmit');
 const $color1 = $('.color1 .colorBox');
-const $colorBox = $('.colorBox')
+const $colorBox = $('.colorBox');
+const $analogInput = $('#analogous');
+const $monochromeInput = $('#monochrome');
+const $splitInput = $('#split')
+
 
 let htmlToAppend, cssToAppend, dismissInlineCss, alertBoxObject, alertMessageObject, htmlClasses;
 
@@ -58,20 +63,71 @@ let cssToPost = { ...dismissInlineCss, ...alertBoxObject, ...alertMessageObject 
 
 
 
-const randomColor = tinycolor.random()
-;
+let color = tinycolor.random();
+const colorBoxes = [...document.getElementsByClassName('colorBox')]
 
-$colorBox.each(function() {
-    $(this).css('background-color', randomColor.toHex8String())
+
+const generateAnalog = (color) => {
+    return color.analogous()
+}
+
+const generateMonochrome = (color) => {
+    return color.monochromatic()
+}
+
+const generateSplit = (color) => {
+    return color.splitcomplement()
+}
+
+const generateTriad = (color) => {
+    return color.triad()
+}
+
+const analogous = [...generateAnalog(color)];
+
+
+$('#colorPalette input').on('click', function () {
+    changeColorBoxes($( this ).val())
+    console.log()
 })
-// $color1.css('background-color', randomColor);
 
+const changeColorBoxes = (colorCombo) => {
+    if (colorCombo === undefined) {
+        colorCombo = 'analogous'
+    }
+    for (let i = 0; i < colorBoxes.length; i++) {
+        console.log(i);
+        console.log(colorBoxes[i]);
+        console.log(colorCombo);
+        // colorBoxes[i].style.backgroundColor = colorCombo.toHex8String()
+        if (colorCombo === 'monochrome') {
+            color = tinycolor.random()
+            const monochrome = [...generateMonochrome(color)];
+            colorBoxes[i].style.backgroundColor = monochrome[i].toHex8String()
+        }
+        else if (colorCombo === 'split') {
+            color = tinycolor.random()
+            const split = [...generateSplit(color)];
+            console.log(split)
+            split.push(tinycolor('white'), tinycolor('white'))
+            console.log(split)
+            colorBoxes[i].style.backgroundColor = split[i].toHex8String()
+        }
+        else if (colorCombo === 'triad') {
+            color = tinycolor.random()
+            const triad = [...generateTriad(color)]
+            triad.push(tinycolor('white'), tinycolor('white'))
+            colorBoxes[i].style.backgroundColor = triad[i].toHex8String()
+        }
+        else if (colorCombo === 'analogous') {
+            color = tinycolor.random()
+            const analogous = [...generateAnalog(color)];
+            colorBoxes[i].style.backgroundColor = analogous[i].toHex8String()
+        }
 
+    }
+}
 
-
-$forms.on('submit', (e) => {
-    e.preventDefault()
-})
 
 $navButton.on('click', function(e) {
     e.preventDefault();
@@ -350,17 +406,18 @@ const getMessage = ( target, source ) => {
 }
 
 const getCurrentForm = () => {
-    $forms.removeClass('d-block').addClass('d-none');
+    $forms.removeClass('d-block d-flex').addClass('d-none');
     if ($boxNavButton.hasClass('active')) {
-        $alertBoxForm.addClass('d-block').removeClass('d-none');
+        $alertBoxForm.addClass('d-block').removeClass('d-none')
     } 
     else if ($buttonNavButton.hasClass('active')) {
         $buttonForm.addClass('d-block').removeClass('d-none');
     }
     else if ($outputButton.hasClass('active')) {        
         $outputForm.addClass('d-block').removeClass('d-none');
-    } else {
-        $colorButton.addClass('d-block').removeClass('d-none')
+    } 
+    else {
+        $colorForm.addClass('d-flex').removeClass('d-none');
     }
 }
 
@@ -519,6 +576,7 @@ getPrev = () => {
     changeUnit($dismissButton, 'border-radius', $buttonBorderRadius)
     changeColor($dismissButton, 'border-color', $buttonBorderColor);
     changeColor($dismissButton, 'color', $buttonTextColor);
+    changeColorBoxes()
     changeMessagePadding();
     showClassInput()
 }
