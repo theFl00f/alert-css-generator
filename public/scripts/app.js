@@ -54,7 +54,9 @@ const $color1 = $('.color1 .colorBox');
 const $colorBox = $('input.colorBox');
 const $analogInput = $('#analogous');
 const $monochromeInput = $('#monochrome');
-const $splitInput = $('#split')
+const $splitInput = $('#split');
+const $radioInputs = $('input:radio');
+const $radioInputForm = $('#userColorInput')
 
 
 let htmlToAppend, cssToAppend, dismissInlineCss, alertBoxObject, alertMessageObject, htmlClasses;
@@ -83,10 +85,9 @@ const generateTriad = (color) => {
     return color.triad()
 }
 
-const analogous = [...generateAnalog(color)];
 
 
-$('input:radio').on('click', function () {
+$radioInputs.on('click', function () {
     changeColorBoxes($( this ).val())
 })
 
@@ -414,14 +415,22 @@ const getMessage = ( target, source ) => {
 
 const getCurrentForm = () => {
     $forms.removeClass('d-block d-flex').addClass('d-none');
+    $colorForm.css('height', '44rem').addClass('pt-5').removeClass('pt-3');
+    $radioInputForm.removeClass('d-none')
     if ($boxNavButton.hasClass('active')) {
-        $alertBoxForm.addClass('d-block').removeClass('d-none')
+        $alertBoxForm.addClass('d-block').removeClass('d-none');
+        $colorForm.css('height', 'unset').removeClass('pt-5').addClass('d-flex pt-3');
+        $radioInputForm.addClass('d-none');
     } 
     else if ($buttonNavButton.hasClass('active')) {
         $buttonForm.addClass('d-block').removeClass('d-none');
+        $colorForm.css('height', 'unset').removeClass('pt-5').addClass('d-flex pt-3');
+        $radioInputForm.addClass('d-none');
     }
     else if ($outputButton.hasClass('active')) {        
         $outputForm.addClass('d-block').removeClass('d-none');
+        $colorForm.css('height', 'unset').removeClass('pt-5').addClass('d-flex pt-3');
+        $radioInputForm.addClass('d-none');
     } 
     else {
         $colorForm.addClass('d-flex').removeClass('d-none');
