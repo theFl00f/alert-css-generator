@@ -69,6 +69,12 @@ let color = tinycolor.random();
 const colorBoxes = [...document.getElementsByClassName('colorBox')]
 
 
+// $color1.draggable()
+// $alertColor
+
+
+
+
 const generateAnalog = (color) => {
     return color.analogous()
 }
@@ -415,22 +421,18 @@ const getMessage = ( target, source ) => {
 
 const getCurrentForm = () => {
     $forms.removeClass('d-block d-flex').addClass('d-none');
-    $colorForm.css('height', '44rem').addClass('pt-5').removeClass('pt-3');
-    $radioInputForm.removeClass('d-none')
+
     if ($boxNavButton.hasClass('active')) {
         $alertBoxForm.addClass('d-block').removeClass('d-none');
-        $colorForm.css('height', 'unset').removeClass('pt-5').addClass('d-flex pt-3');
-        $radioInputForm.addClass('d-none');
+
     } 
     else if ($buttonNavButton.hasClass('active')) {
         $buttonForm.addClass('d-block').removeClass('d-none');
-        $colorForm.css('height', 'unset').removeClass('pt-5').addClass('d-flex pt-3');
-        $radioInputForm.addClass('d-none');
+
     }
     else if ($outputButton.hasClass('active')) {        
         $outputForm.addClass('d-block').removeClass('d-none');
-        $colorForm.css('height', 'unset').removeClass('pt-5').addClass('d-flex pt-3');
-        $radioInputForm.addClass('d-none');
+
     } 
     else {
         $colorForm.addClass('d-flex').removeClass('d-none');
