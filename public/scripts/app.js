@@ -282,7 +282,7 @@ body = {
 $outputForm.on('submit', (e) => {
     e.preventDefault()
     $outputForm.append(`
-    <div style="background-color:#31383B;border-color:#062533;color:#C1C7C9;width:30rem;height:18.25rem;border-radius:2.75rem;font-family:roboto;text-align:center;border-style:solid;border-width:0.8rem;position:absolute;top:21%;left:50%;margin-left:-15rem" id="addAlertDialogue">
+    <div style="background-color:#31383B;border-color:#062533;color:#C1C7C9;width:30rem;height:18.25rem;border-radius:2.75rem;font-family:roboto;text-align:center;border-style:solid;border-width:0.8rem;position:absolute;top:21%;z-index:19;left:50%;margin-left:-15rem" id="addAlertDialogue">
     
     
         <div style="padding-top:2rem;padding-bottom:.5rem">
