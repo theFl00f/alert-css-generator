@@ -279,7 +279,8 @@ body = {
 
 
 //where the space is below: add button to close dialogue, position absolute to the alert box
-$outputForm.on('submit', () => {
+$outputForm.on('submit', (e) => {
+    e.preventDefault()
     $outputForm.append(`
     <div style="background-color:#31383B;border-color:#062533;color:#C1C7C9;width:30rem;height:18.25rem;border-radius:2.75rem;font-family:roboto;text-align:center;border-style:solid;border-width:0.8rem;position:absolute;top:21%;left:50%;margin-left:-15rem" id="addAlertDialogue">
     
