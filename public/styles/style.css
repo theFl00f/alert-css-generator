@@ -301,6 +301,12 @@ h4 span {
   height: 10rem;
   width: 10rem;
   border: none;
-  clip-path: circle(4rem at center);
+  clip-path: circle(35% at 50% 50%);
   cursor: pointer;
+}
+
+div.colorBox {
+  cursor: auto;
+  position: relative;
+  z-index: 9;
 }

@@ -50,13 +50,13 @@ const $userAlertsBox = $('article.userAlerts > div');
 const $userAlertsButton = $('article.userAlerts button');
 const $userAlertsMessage = $('article.userAlerts > div > div');
 const $confirmSubmit = $('#confirmSubmit');
-const $color1 = $('.color1 .colorBox');
 const $colorBox = $('input.colorBox');
 const $analogInput = $('#analogous');
 const $monochromeInput = $('#monochrome');
 const $splitInput = $('#split');
 const $radioInputs = $('input:radio');
-const $radioInputForm = $('#userColorInput')
+const $radioInputForm = $('#userColorInput');
+const $paletteSelection = $('.paletteSelection');
 
 
 let htmlToAppend, cssToAppend, dismissInlineCss, alertBoxObject, alertMessageObject, htmlClasses;
@@ -69,7 +69,6 @@ let color = tinycolor.random();
 const colorBoxes = [...document.getElementsByClassName('colorBox')]
 
 
-// $color1.draggable()
 // $alertColor
 
 
@@ -101,21 +100,27 @@ $radioInputs.on('click', function () {
 
 const changeColorBoxes = (colorCombo) => {
     if (colorCombo === undefined) {
-        console.log('undefined')
         for (let i = 0; i < colorBoxes.length; i++) {
             color = tinycolor.random()
             colorBoxes[i].value = color.toHexString();
             colorBoxes[i].style.backgroundColor = color.toHexString();
+
+            $paletteSelection.append(`
+            <div id=${color.toHexString()} style="background-color:${color.toHexString()}" class="colorBox color${i}"></div>
+            `)
         }
     } 
     else {
+        $('div.colorBox').remove()
         for (let i = 0; i < colorBoxes.length; i++) {
             if (colorCombo === 'monochrome') {
                 color = tinycolor.random()
                 const monochrome = [...generateMonochrome(color)];
                 colorBoxes[i].value = monochrome[i].toHexString()
                 colorBoxes[i].style.backgroundColor = monochrome[i].toHexString();
-
+                $paletteSelection.append(`
+                <div id=${monochrome[i].toHexString()} style="background-color:${monochrome[i].toHexString()}" class="colorBox color${i}"></div>
+                `)
             }
             else if (colorCombo === 'split') {
                 color = tinycolor.random()
@@ -123,6 +128,9 @@ const changeColorBoxes = (colorCombo) => {
                 split.push(tinycolor('grey'), tinycolor('grey'))
                 colorBoxes[i].value = split[i].toHexString()
                 colorBoxes[i].style.backgroundColor = split[i].toHexString();
+                $paletteSelection.append(`
+                <div id=${split[i].toHexString()} style="background-color:${split[i].toHexString()}" class="colorBox color${i}"></div>
+                `)
             }
             else if (colorCombo === 'triad') {
                 color = tinycolor.random()
@@ -130,16 +138,45 @@ const changeColorBoxes = (colorCombo) => {
                 triad.push(tinycolor('grey'), tinycolor('grey'))
                 colorBoxes[i].value = triad[i].toHexString()
                 colorBoxes[i].style.backgroundColor = triad[i].toHexString();
+                $paletteSelection.append(`
+                <div id=${triad[i].toHexString()} style="background-color:${triad[i].toHexString()}" class="colorBox color${i}"></div>
+                `)
             }
             else if (colorCombo === 'analogous') {
                 color = tinycolor.random()
                 const analogous = [...generateAnalog(color)];
                 colorBoxes[i].value = analogous[i].toHexString()
                 colorBoxes[i].style.backgroundColor = analogous[i].toHexString();
+                $paletteSelection.append(`
+                <div id=${analogous[i].toHexString()} style="background-color:${analogous[i].toHexString()}" class="colorBox color${i}"></div>
+                `)
             }
     
         }
     }
+    const $colorBoxes = $('div.colorBox');
+    $colorBoxes.each(function() {
+        $(this).draggable({
+            helper: 'clone',
+            revert: true,
+        })
+    })
+
+    $('input.col').each(function() {
+        $(this).droppable({
+            drop: function(event, ui) {
+                const { draggable } = ui;
+                console.log(draggable)
+                $(this).val(draggable.attr('id'))
+                changeColor($alertBox, 'background-color', $alertColor);
+                changeColor($alertBox, 'border-color', $alertBorderColor);
+                changeColor($alertMessageOut, 'color', $alertMessageColor);
+                changeColor($dismissButton, 'background-color', $buttonBgColor)
+                changeColor($dismissButton, 'border-color', $buttonBorderColor);
+                changeColor($dismissButton, 'color', $buttonTextColor);
+            }
+        })
+    })
 }
 
 
@@ -282,7 +319,7 @@ $fontFamilySelection.on('change', () => {
     getFontFamily($alertBox)
 })
 
-$alertColor.on('input', () => {
+$alertColor.on('input, change', () => {
     changeColor($alertBox, 'background-color', $alertColor)
 })
 
