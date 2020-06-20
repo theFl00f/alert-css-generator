@@ -27,9 +27,12 @@ This is MEJN, using jQuery. Styling for forms, layout and typography with Bootst
 * Save your design to the database, titled or anonymous
 * See all user alerts that have been saved!
 * Steal others designs, the HTML and CSS are saved too! 👀
+* Generate colour palettes in either analogous, monochromatic, split compliment or triadic combinations! (uses tinycolor)
+* Modify this palette to your liking on the Palette menu
+* Once you switch to styling your alert, simply click and drag from the palette at the top to check out your palette in action. (uses jQuery UI)
 ## Upcoming Features
 ### in progress
+* color palette generator - mobile friendly
 ### the backburner
-* color palette generator
 * randomly generated names for untitled alerts
 
