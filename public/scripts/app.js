@@ -118,9 +118,9 @@ const changeColorBoxes = (colorCombo) => {
                 const monochrome = [...generateMonochrome(color)];
                 colorBoxes[i].value = monochrome[i].toHexString()
                 colorBoxes[i].style.backgroundColor = monochrome[i].toHexString();
-                $paletteSelection.append(`
+                $paletteSelection.append(`<div class="dropzone">
                 <div id=${monochrome[i].toHexString()} style="background-color:${monochrome[i].toHexString()}" class="colorBox color${i}"></div>
-                `)
+                </div>`)
             }
             else if (colorCombo === 'split') {
                 color = tinycolor.random()
@@ -128,9 +128,9 @@ const changeColorBoxes = (colorCombo) => {
                 split.push(tinycolor('grey'), tinycolor('grey'))
                 colorBoxes[i].value = split[i].toHexString()
                 colorBoxes[i].style.backgroundColor = split[i].toHexString();
-                $paletteSelection.append(`
+                $paletteSelection.append(`<div class="dropzone">
                 <div id=${split[i].toHexString()} style="background-color:${split[i].toHexString()}" class="colorBox color${i}"></div>
-                `)
+                </div>`)
             }
             else if (colorCombo === 'triad') {
                 color = tinycolor.random()
@@ -138,18 +138,18 @@ const changeColorBoxes = (colorCombo) => {
                 triad.push(tinycolor('grey'), tinycolor('grey'))
                 colorBoxes[i].value = triad[i].toHexString()
                 colorBoxes[i].style.backgroundColor = triad[i].toHexString();
-                $paletteSelection.append(`
+                $paletteSelection.append(`<div class="dropzone">
                 <div id=${triad[i].toHexString()} style="background-color:${triad[i].toHexString()}" class="colorBox color${i}"></div>
-                `)
+                </div>`)
             }
             else if (colorCombo === 'analogous') {
                 color = tinycolor.random()
                 const analogous = [...generateAnalog(color)];
                 colorBoxes[i].value = analogous[i].toHexString()
                 colorBoxes[i].style.backgroundColor = analogous[i].toHexString();
-                $paletteSelection.append(`
+                $paletteSelection.append(`<div class="dropzone">
                 <div id=${analogous[i].toHexString()} style="background-color:${analogous[i].toHexString()}" class="colorBox color${i}"></div>
-                `)
+                </div>`)
             }
     
         }
@@ -289,12 +289,12 @@ $outputForm.on('submit', (e) => {
     
         <div style="padding-top:2rem;padding-bottom:.5rem">
             <div class="form-group mx-4">
-                <label for="creator" class="sr-only">Creator name:</label>
-                <input type="text" name="alertBoxColor" id="creator" placeholder="Creator name" class="form-control">
-            </div>
-            <div class="form-group mx-4">
                 <label for="newAlertName" class="sr-only">Alert name:</label>
                 <input type="text" name="alertBoxColor" id="newAlertName" placeholder="Alert name" class="form-control mt-1">
+            </div>
+            <div class="form-group mx-4">
+                <label for="creator" class="sr-only">Creator name:</label>
+                <input type="text" name="alertBoxColor" id="creator" placeholder="Creator name" class="form-control">
             </div>
             <p class="mt-3 mb-3">default if empty: 'untitled' by anonymous</p>
         </div>

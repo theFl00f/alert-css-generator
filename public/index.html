@@ -13,193 +13,193 @@
     crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> 
 <script src="./scripts/jquery.ui.touch-punch.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/droppable.js"></script> -->
 <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
     <div class="wrapper container-fluid position-relative">
         <article class="inputBox roboto container-fluid pt-5">
             <h1 class="display-2 text-center mb-3">&lt;alert css generator/&gt;</alert></h1>
-            <div id="paletteSelection" class="paletteSelection d-flex w-100 justify-content-center my-5">
+            <div id="paletteSelection" class="paletteSelection d-flex w-100 justify-content-center mb-1">
             </div>
-            <nav class="w-100">
-                <div class="btn-group btn-group-lg">  
-                    <button id="paletteForm" class="btn-dark btn active">Palette</button>  
-                    <button id="alertBoxForm" class="btn btn-light">Alert Box</button>
-                    <button id="buttonForm" class="btn btn-light">Buttons</button>
-                    <button id="codeOutput" class="btn btn-light">Output</button>
-                </div>
-                <button type="button" id="userAlerts" class="btn btn-light btn-lg ml-auto">See user alerts</button>
-            </nav>
-            <form action="#" id="colorPalette" class="bg-dark pl-5 pr-5 pt-5 rounded-bottom container-fluid text-center d-flex flex-column">
-                <div id="userColorInput" class="my-5">
-                    <div class="form-check-inline form-check">
-                        <input type="radio" class="form-check-input" id="analogous" value="analogous" name="colorSelection">
-                        <label for="analogous" class="form-check-label text-light">Analogous</label>
+            <section>  
+                <nav class="w-100">
+                    <div class="btn-group btn-group-lg">  
+                        <button id="paletteForm" class="btn-dark btn active">Palette</button>  
+                        <button id="alertBoxForm" class="btn btn-light">Alert Box</button>
+                        <button id="buttonForm" class="btn btn-light">Buttons</button>
+                        <button id="codeOutput" class="btn btn-light">Output</button>
                     </div>
-                    <div class="form-check-inline form-check">
-                        <input type="radio" class="form-check-input" id="monochrome" value="monochrome" name="colorSelection">
-                        <label for="monochrome" class="form-check-label text-light">Monochromatic</label>
-                    </div>
-                    <div class="form-check-inline form-check">
-                        <input type="radio" class="form-check-input" id="split" value="split" name="colorSelection">
-                        <label for="split" class="form-check-label text-light">Split Compliment</label>
-                    </div>
-                    <div class="form-check-inline form-check">
-                        <input type="radio" class="form-check-input" id="triad" value="triad" name="colorSelection">
-                        <label for="triad" class="form-check-label text-light">Triad</label>
-                    </div>
-                </div>
-                <div class="row w-100 mx-2 h-100">
-                    <div class="color1 col d-flex flex-column align-items-center px-0">
-                        <div class="colorInputContainer">
-                            <input type="color" class="colorBox" value="#">
+                    <button type="button" id="userAlerts" class="btn btn-light btn-lg ml-auto">See user alerts</button>
+                </nav>
+                <form action="#" id="colorPalette" class="bg-dark pl-5 pr-5 pt-5 rounded-bottom container-fluid text-center d-flex flex-column">
+                    <div id="userColorInput" class="my-5">
+                        <div class="form-check-inline form-check">
+                            <input type="radio" class="form-check-input" id="analogous" value="analogous" name="colorSelection">
+                            <label for="analogous" class="form-check-label text-light">Analogous</label>
                         </div>
-                        <p class="text-light mt-2">Color 1</p>
-                    </div>
-                    <div class="color2 col d-flex flex-column align-items-center px-0">
-                        <div class="colorInputContainer">
-                            <input type="color" class="colorBox">
+                        <div class="form-check-inline form-check">
+                            <input type="radio" class="form-check-input" id="monochrome" value="monochrome" name="colorSelection">
+                            <label for="monochrome" class="form-check-label text-light">Monochromatic</label>
                         </div>
-                        <p class="text-light mt-2">Color 2</p>
-                    </div>
-                    <div class="color3 col d-flex flex-column align-items-center px-0">
-                        <div class="colorInputContainer">
-                            <input type="color" class="colorBox">
+                        <div class="form-check-inline form-check">
+                            <input type="radio" class="form-check-input" id="split" value="split" name="colorSelection">
+                            <label for="split" class="form-check-label text-light">Split Compliment</label>
                         </div>
-                        <p class="text-light mt-2">Color 3</p>
-                    </div>
-                    <div class="color4 col d-flex flex-column align-items-center px-0">
-                        <div class="colorInputContainer">
-                            <input type="color" class="colorBox">
+                        <div class="form-check-inline form-check">
+                            <input type="radio" class="form-check-input" id="triad" value="triad" name="colorSelection">
+                            <label for="triad" class="form-check-label text-light">Triad</label>
                         </div>
-                        <p class="text-light mt-2">Color 4</p>
                     </div>
-                    <div class="color5 col d-flex flex-column align-items-center px-0">
-                        <div class="colorInputContainer">
-                            <input type="color" class="colorBox">
+                    <div class="row w-100 mx-2 h-100">
+                        <div class="color1 col d-flex flex-column align-items-center px-0">
+                            <div class="colorInputContainer">
+                                <input type="color" class="colorBox" value="#">
+                            </div>
+                            <p class="text-light mt-2">Color 1</p>
                         </div>
-                        <p class="text-light mt-2">Color 5</p>
+                        <div class="color2 col d-flex flex-column align-items-center px-0">
+                            <div class="colorInputContainer">
+                                <input type="color" class="colorBox">
+                            </div>
+                            <p class="text-light mt-2">Color 2</p>
+                        </div>
+                        <div class="color3 col d-flex flex-column align-items-center px-0">
+                            <div class="colorInputContainer">
+                                <input type="color" class="colorBox">
+                            </div>
+                            <p class="text-light mt-2">Color 3</p>
+                        </div>
+                        <div class="color4 col d-flex flex-column align-items-center px-0">
+                            <div class="colorInputContainer">
+                                <input type="color" class="colorBox">
+                            </div>
+                            <p class="text-light mt-2">Color 4</p>
+                        </div>
+                        <div class="color5 col d-flex flex-column align-items-center px-0">
+                            <div class="colorInputContainer">
+                                <input type="color" class="colorBox">
+                            </div>
+                            <p class="text-light mt-2">Color 5</p>
+                        </div>
                     </div>
-                </div>
-            </form>
-
-            <form id="alertBoxStyles" class="bg-dark pl-5 pr-5 rounded-bottom">
-                <div class="form-group pt-3 row">
-                    <label for="alertBoxClass" class="col text-light">Alert box class name?</label>
-                    <input type="text" id="alertBoxClass" name="alertBoxClass" class="form-control mt-1 col" placeholder="alertBox">
-                </div>
-                <div class="form-group row">
-                    <label for="fontFamily" class="col text-light">Font family?</label>
-                    <select class="custom-select mt-1 col" name="fontFamily" id="fontFamily">
-                        <option value="none" selected>None</option>
-                        <option value="roboto">Roboto</option>
-                        <option value="montserrat">Montserrat</option>
-                        <option value="lato">Lato</option>
-                        <option value="raleway">Raleway</option>
-                    </select>
-                </div>
-                <div class="form-group row">
-                    <label for="alertMessage" class="col text-light">alert message? leave empty if no message.</label>
-                    <textarea name="alertMessage" id="alertMessage" class="form-control mt-1 col"></textarea>
-                </div>
-                <div class="form-group row" id="messageClassGroup">
-                    <label for="alertMessageClass" class="col text-light">Alert message class name?</label>
-                    <input type="text" name="alertMessageClass" id="alertMessageClass" class="form-control mt-1 col" placeholder="alertMessage">
-                </div>
-                <div class="form-group row">
-                    <label for="alertBoxPaddingX" class="col text-light">Alert box width:</label>
-                    <input type="range" name="alertBoxPaddingX" id="alertBoxPaddingX" min="12" max="50" value="12" class="custom-range mt-1 col">
-                </div>
-                <div class="form-group row">
-                    <label for="alertBoxPaddingY" class="col text-light">Alert box height:</label>
-                    <input type="range" name="alertBoxPaddingY" id="alertBoxPaddingY" min="9" max="30" value="9" class="custom-range mt-1 col">
-                </div>
-                <div class="form-group row">
-                    <label for="alertBoxColor" class="col text-light">Alert box color:</label>
-                    <input type="color" name="alertBoxColor" id="alertBoxColor" value="#2ec4b6" class="form-control mt-1 col dropzone">
-                </div>
-                <div class="form-group row">
-                    <label for="alertBoxBorderRadius" class="col text-light">Border radius:</label>
-                    <input type="range" name="alertBoxBorderRadius" id="alertBoxBorderRadius" min="0" max="10" value="0.75" step="0.25" class="custom-range mt-1 col">
-                </div>
-                <div class="form-group row">
-                    <label for="alertBoxBorderWidth" class="col text-light">Border width:</label>
-                    <input type="range" name="alertBoxBorderWidth" id="alertBoxBorderWidth" min="0.0" max="4.0" step="0.1" value="0" class="custom-range mt-1 col">
-                </div>
-                <div class="form-group row">
-                    <label for="alertBoxBorderColor" class="col text-light">Alert border color:</label>
-                    <input type="color" name="alertBoxBorderColor" id="alertBoxBorderColor" value="#cbf3f0" class="form-control mt-1 col dropzone">
-                </div>
-                <div class="form-group row">
-                    <!-- break into 2 different sliders -->
-                    <label for="alertMessagePadding" class="col text-light">Alert message padding:</label>
-                    <input type="range" name="alertMessagePadding" id="alertMessagePadding" max="8" min="1" value="1.75" step="0.25" class="custom-range mt-1 col">
-                </div>
-                <div class="form-group row">
-                    <label for="alertMessageColor" class="col text-light">Alert message color:</label>
-                    <input type="color" name="alertMessageColor" id="alertMessageColor" value="#cbf3f0" class="form-control mt-1 col dropzone">
-                </div>
-            </form>
-
-
-            
-            <form id="buttonStyles" class="bg-dark pl-5 pr-5 d-none">
-                <div class="form-group pt-3 row">
-                    <label for="buttonClass" class="col text-light">Button class?</label>
-                    <input type="text" id="buttonClass" name="buttonClass" class="form-control mt-1 col" placeholder="dismiss">
-                </div>
-                <div class="form-group row">
-                    <label for="buttonText1" class="col text-light">Dismiss text:</label>
-                    <input type="text" id="buttonText1" value="ok" class="form-control mt-1 col" name="buttonText1">
-                </div>
-                <div class="form-group row">
-                    <label for="buttonHeight" class="col text-light">Button height: </label>
-                    <input type="range" name="buttonHeight" id="buttonHeight" max="10" min="1" value="2.5" step="0.5" class="custom-range mt-1 col">
-                </div>
-                <div class="form-group row">
-                    <label for="buttonWidth" class="col text-light">Button width: </label>
-                    <input type="range" name="buttonWidth" id="buttonWidth" max="40" min="1" value="9" class="custom-range mt-1 col">
-                </div>
-                <div class="form-group row">
-                    <label for="buttonBgColor" class="col text-light">Button background: </label>
-                    <input type="color" name="buttonBgColor" id="buttonBgColor" value="#ffbf69" class="form-control mt-1 col dropzone">
-                </div>
-                <div class="form-group row">
-                    <label for="buttonBorderWidth" class="col text-light">Button border width: </label>
-                    <input type="range" name="buttonBorderWidth" id="buttonBorderWidth" min="0" max="1" step="0.1" value="0" class="custom-range mt-1 col">
-                </div>
-                <div class="form-group row">
-                    <label for="buttonBorderRadius" class="col text-light">Button border radius: </label>
-                    <input type="range" name="buttonBorderRadius" id="buttonBorderRadius" min="0" max="5" value="0.5" step="0.5" class="custom-range mt-1 col">
-                </div>
-                <div class="form-group row">
-                    <label for="buttonBorderColor" class="col text-light">Button border color: </label>
-                    <input type="color" name="buttonBorderColor" id="buttonBorderColor" value="#ff9f1c" class="form-control mt-1 col dropzone">
-                </div>
-                <div class="form-group row">
-                    <label for="buttonTextColor" class="col text-light">Button text color: </label>
-                    <input type="color" name="buttonTextColor" id="buttonTextColor" value="#ffffff" class="form-control mt-1 col dropzone">
-                </div>
-            </form>
-
-
-            <form id="codeOutputForm" class="bg-dark pl-5 pr-5 d-none" action="/api/alert">
-                <div class="form-group pt-3">
-                    <div class="form-group">                        
-                        <label for="codeHTML" class="text-light">HTML: </label>
-                        <textarea name="codeHTML" id="codeHTML" cols="50" rows="15" class="form-control mt-1" readonly></textarea>
+                </form>
+    
+                <form id="alertBoxStyles" class="bg-dark pl-5 pr-5 rounded-bottom">
+                    <div class="form-group pt-3 row">
+                        <label for="alertBoxClass" class="col text-light">Alert box class name?</label>
+                        <input type="text" id="alertBoxClass" name="alertBoxClass" class="form-control mt-1 col" placeholder="alertBox">
                     </div>
-                    <div class="form-group">
-                        <label for="codeCSS" class="text-light">CSS: </label>
-                        <textarea name="codeCSS" id="codeCSS" cols="50" rows="15" class="form-control mt-1" readonly></textarea>
+                    <div class="form-group row">
+                        <label for="fontFamily" class="col text-light">Font family?</label>
+                        <select class="custom-select mt-1 col" name="fontFamily" id="fontFamily">
+                            <option value="none" selected>None</option>
+                            <option value="roboto">Roboto</option>
+                            <option value="montserrat">Montserrat</option>
+                            <option value="lato">Lato</option>
+                            <option value="raleway">Raleway</option>
+                        </select>
                     </div>
-                </div>
-                <div class="container-fluid d-flex justify-content-end px-0">
-                    <button type="submit" class="btn btn-outline-light btn-lg" >Save to database!</button>
-                </div>
-            </form>
+                    <div class="form-group row">
+                        <label for="alertMessage" class="col text-light">alert message? leave empty if no message.</label>
+                        <textarea name="alertMessage" id="alertMessage" class="form-control mt-1 col"></textarea>
+                    </div>
+                    <div class="form-group row" id="messageClassGroup">
+                        <label for="alertMessageClass" class="col text-light">Alert message class name?</label>
+                        <input type="text" name="alertMessageClass" id="alertMessageClass" class="form-control mt-1 col" placeholder="alertMessage">
+                    </div>
+                    <div class="form-group row">
+                        <label for="alertBoxPaddingX" class="col text-light">Alert box width:</label>
+                        <input type="range" name="alertBoxPaddingX" id="alertBoxPaddingX" min="12" max="50" value="12" class="custom-range mt-1 col">
+                    </div>
+                    <div class="form-group row">
+                        <label for="alertBoxPaddingY" class="col text-light">Alert box height:</label>
+                        <input type="range" name="alertBoxPaddingY" id="alertBoxPaddingY" min="9" max="30" value="9" class="custom-range mt-1 col">
+                    </div>
+                    <div class="form-group row">
+                        <label for="alertBoxColor" class="col text-light">Alert box color:</label>
+                        <input type="color" name="alertBoxColor" id="alertBoxColor" value="#2ec4b6" class="form-control mt-1 col dropzone">
+                    </div>
+                    <div class="form-group row">
+                        <label for="alertBoxBorderRadius" class="col text-light">Border radius:</label>
+                        <input type="range" name="alertBoxBorderRadius" id="alertBoxBorderRadius" min="0" max="10" value="0.75" step="0.25" class="custom-range mt-1 col">
+                    </div>
+                    <div class="form-group row">
+                        <label for="alertBoxBorderWidth" class="col text-light">Border width:</label>
+                        <input type="range" name="alertBoxBorderWidth" id="alertBoxBorderWidth" min="0.0" max="4.0" step="0.1" value="0" class="custom-range mt-1 col">
+                    </div>
+                    <div class="form-group row">
+                        <label for="alertBoxBorderColor" class="col text-light">Alert border color:</label>
+                        <input type="color" name="alertBoxBorderColor" id="alertBoxBorderColor" value="#cbf3f0" class="form-control mt-1 col dropzone">
+                    </div>
+                    <div class="form-group row">
+                        <!-- break into 2 different sliders -->
+                        <label for="alertMessagePadding" class="col text-light">Alert message padding:</label>
+                        <input type="range" name="alertMessagePadding" id="alertMessagePadding" max="8" min="1" value="1.75" step="0.25" class="custom-range mt-1 col">
+                    </div>
+                    <div class="form-group row">
+                        <label for="alertMessageColor" class="col text-light">Alert message color:</label>
+                        <input type="color" name="alertMessageColor" id="alertMessageColor" value="#cbf3f0" class="form-control mt-1 col dropzone">
+                    </div>
+                </form>
+    
+    
+                
+                <form id="buttonStyles" class="bg-dark pl-5 pr-5 d-none">
+                    <div class="form-group pt-3 row">
+                        <label for="buttonClass" class="col text-light">Button class?</label>
+                        <input type="text" id="buttonClass" name="buttonClass" class="form-control mt-1 col" placeholder="dismiss">
+                    </div>
+                    <div class="form-group row">
+                        <label for="buttonText1" class="col text-light">Dismiss text:</label>
+                        <input type="text" id="buttonText1" value="ok" class="form-control mt-1 col" name="buttonText1">
+                    </div>
+                    <div class="form-group row">
+                        <label for="buttonHeight" class="col text-light">Button height: </label>
+                        <input type="range" name="buttonHeight" id="buttonHeight" max="10" min="1" value="2.5" step="0.5" class="custom-range mt-1 col">
+                    </div>
+                    <div class="form-group row">
+                        <label for="buttonWidth" class="col text-light">Button width: </label>
+                        <input type="range" name="buttonWidth" id="buttonWidth" max="40" min="1" value="9" class="custom-range mt-1 col">
+                    </div>
+                    <div class="form-group row">
+                        <label for="buttonBgColor" class="col text-light">Button background: </label>
+                        <input type="color" name="buttonBgColor" id="buttonBgColor" value="#ffbf69" class="form-control mt-1 col dropzone">
+                    </div>
+                    <div class="form-group row">
+                        <label for="buttonBorderWidth" class="col text-light">Button border width: </label>
+                        <input type="range" name="buttonBorderWidth" id="buttonBorderWidth" min="0" max="1" step="0.1" value="0" class="custom-range mt-1 col">
+                    </div>
+                    <div class="form-group row">
+                        <label for="buttonBorderRadius" class="col text-light">Button border radius: </label>
+                        <input type="range" name="buttonBorderRadius" id="buttonBorderRadius" min="0" max="5" value="0.5" step="0.5" class="custom-range mt-1 col">
+                    </div>
+                    <div class="form-group row">
+                        <label for="buttonBorderColor" class="col text-light">Button border color: </label>
+                        <input type="color" name="buttonBorderColor" id="buttonBorderColor" value="#ff9f1c" class="form-control mt-1 col dropzone">
+                    </div>
+                    <div class="form-group row">
+                        <label for="buttonTextColor" class="col text-light">Button text color: </label>
+                        <input type="color" name="buttonTextColor" id="buttonTextColor" value="#ffffff" class="form-control mt-1 col dropzone">
+                    </div>
+                </form>
+    
+    
+                <form id="codeOutputForm" class="bg-dark pl-5 pr-5 d-none" action="/api/alert">
+                    <div class="form-group pt-3">
+                        <div class="form-group">                        
+                            <label for="codeHTML" class="text-light">HTML: </label>
+                            <textarea name="codeHTML" id="codeHTML" cols="50" rows="15" class="form-control mt-1" readonly></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="codeCSS" class="text-light">CSS: </label>
+                            <textarea name="codeCSS" id="codeCSS" cols="50" rows="15" class="form-control mt-1" readonly></textarea>
+                        </div>
+                    </div>
+                    <div class="container-fluid d-flex justify-content-end px-0">
+                        <button type="submit" class="btn btn-outline-light btn-lg" >Save to database!</button>
+                    </div>
+                </form>
+            </section>
         </article>
 
 
