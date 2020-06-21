@@ -230,6 +230,13 @@ body {
   font-size: 1.4rem;
 }
 
+html, body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
 #alertsPage form {
   height: 30rem;
 }
@@ -297,16 +304,31 @@ h4 span {
   font-weight: bold;
 }
 
-div.dropzone,
-.colorBox {
-  height: 10rem;
-  width: 10rem;
+div.dropzone, .colorInputContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.colorInputContainer {
+  width: 100%;
+}
+
+div.dropzone {
+  width: 20%;
 }
 
 .colorBox {
+  height: 15rem;
+  width: 15rem;
   border: none;
-  clip-path: circle(35% at 50% 50%);
+  clip-path: circle(27% at 50% 50%);
   cursor: pointer;
+  padding: 0;
+}
+
+input.colorBox {
+  clip-path: circle(22.5% at 50% 50%);
 }
 
 div.colorBox {
