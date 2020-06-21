@@ -60,9 +60,13 @@ h4 span {
     font-weight: bold;
 }
 
+div.dropzone, 
 .colorBox {
     height: 10rem;
     width: 10rem;
+}
+
+.colorBox {
     border: none;
     clip-path: circle(35% at 50% 50%);
     cursor: pointer;

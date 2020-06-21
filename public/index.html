@@ -12,13 +12,16 @@
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
     crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> 
-    <link rel="stylesheet" href="./styles/style.css">
+<script src="./scripts/jquery-ui-touch-punch/jquery.ui.touch-punch.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/droppable.js"></script> -->
+<link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
     <div class="wrapper container-fluid position-relative">
         <article class="inputBox roboto container-fluid pt-5">
             <h1 class="display-2 text-center mb-3">&lt;alert css generator/&gt;</alert></h1>
-            <div class="paletteSelection d-flex w-100 justify-content-center my-5">
+            <div id="paletteSelection" class="paletteSelection d-flex w-100 justify-content-center my-5">
             </div>
             <nav class="w-100">
                 <div class="btn-group btn-group-lg">  
@@ -105,7 +108,7 @@
                 </div>
                 <div class="form-group row">
                     <label for="alertBoxColor" class="col text-light">Alert box color:</label>
-                    <input type="color" name="alertBoxColor" id="alertBoxColor" value="#2ec4b6" class="form-control mt-1 col">
+                    <input type="color" name="alertBoxColor" id="alertBoxColor" value="#2ec4b6" class="form-control mt-1 col dropzone">
                 </div>
                 <div class="form-group row">
                     <label for="alertBoxBorderRadius" class="col text-light">Border radius:</label>
@@ -117,7 +120,7 @@
                 </div>
                 <div class="form-group row">
                     <label for="alertBoxBorderColor" class="col text-light">Alert border color:</label>
-                    <input type="color" name="alertBoxBorderColor" id="alertBoxBorderColor" value="#cbf3f0" class="form-control mt-1 col">
+                    <input type="color" name="alertBoxBorderColor" id="alertBoxBorderColor" value="#cbf3f0" class="form-control mt-1 col dropzone">
                 </div>
                 <div class="form-group row">
                     <!-- break into 2 different sliders -->
@@ -126,7 +129,7 @@
                 </div>
                 <div class="form-group row">
                     <label for="alertMessageColor" class="col text-light">Alert message color:</label>
-                    <input type="color" name="alertMessageColor" id="alertMessageColor" value="#cbf3f0" class="form-control mt-1 col">
+                    <input type="color" name="alertMessageColor" id="alertMessageColor" value="#cbf3f0" class="form-control mt-1 col dropzone">
                 </div>
             </form>
 
@@ -151,7 +154,7 @@
                 </div>
                 <div class="form-group row">
                     <label for="buttonBgColor" class="col text-light">Button background: </label>
-                    <input type="color" name="buttonBgColor" id="buttonBgColor" value="#ffbf69" class="form-control mt-1 col">
+                    <input type="color" name="buttonBgColor" id="buttonBgColor" value="#ffbf69" class="form-control mt-1 col dropzone">
                 </div>
                 <div class="form-group row">
                     <label for="buttonBorderWidth" class="col text-light">Button border width: </label>
@@ -163,11 +166,11 @@
                 </div>
                 <div class="form-group row">
                     <label for="buttonBorderColor" class="col text-light">Button border color: </label>
-                    <input type="color" name="buttonBorderColor" id="buttonBorderColor" value="#ff9f1c" class="form-control mt-1 col">
+                    <input type="color" name="buttonBorderColor" id="buttonBorderColor" value="#ff9f1c" class="form-control mt-1 col dropzone">
                 </div>
                 <div class="form-group row">
                     <label for="buttonTextColor" class="col text-light">Button text color: </label>
-                    <input type="color" name="buttonTextColor" id="buttonTextColor" value="#ffffff" class="form-control mt-1 col">
+                    <input type="color" name="buttonTextColor" id="buttonTextColor" value="#ffffff" class="form-control mt-1 col dropzone">
                 </div>
             </form>
 

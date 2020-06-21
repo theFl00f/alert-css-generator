@@ -3,7 +3,6 @@
 //border radius slider
 //drop shadow
 
-
 const $fontFamilySelection = $('#fontFamily')
 const $alertColor = $('#alertBoxColor');
 const $alertBox = $('.alertBox');
@@ -105,8 +104,9 @@ const changeColorBoxes = (colorCombo) => {
             colorBoxes[i].value = color.toHexString();
             colorBoxes[i].style.backgroundColor = color.toHexString();
 
-            $paletteSelection.append(`
+            $paletteSelection.append(`<div class="dropzone">
             <div id=${color.toHexString()} style="background-color:${color.toHexString()}" class="colorBox color${i}"></div>
+            </div>
             `)
         }
     } 
@@ -155,6 +155,9 @@ const changeColorBoxes = (colorCombo) => {
         }
     }
     const $colorBoxes = $('div.colorBox');
+
+
+
     $colorBoxes.each(function() {
         $(this).draggable({
             helper: 'clone',
@@ -166,7 +169,6 @@ const changeColorBoxes = (colorCombo) => {
         $(this).droppable({
             drop: function(event, ui) {
                 const { draggable } = ui;
-                console.log(draggable)
                 $(this).val(draggable.attr('id'))
                 changeColor($alertBox, 'background-color', $alertColor);
                 changeColor($alertBox, 'border-color', $alertBorderColor);
@@ -400,7 +402,6 @@ $userAlertButton.on('click', () => {
 })
 
 $homeButton.on('focus', () => {
-    console.log('focused')
 }).hover(() => {
     $homeButton.toggleClass('text-light')
 },
@@ -561,7 +562,6 @@ const postUserAlert = () => {
 $( document ).on('click', 'a.seeMore', function (e) {
     e.preventDefault();
     $(this).toggleClass('open')
-    console.log($(this).hasClass('open'))
     if ($(this).hasClass('open')) {
         window.location.replace('#id=' + $(this).attr('id'))
     } else if (!$(this).hasClass('open')) {
