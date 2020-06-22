@@ -29,10 +29,10 @@ This is MEJN, using jQuery. Styling for forms, layout and typography with Bootst
 * Steal others designs, the HTML and CSS are saved too! 👀
 * Generate colour palettes in either analogous, monochromatic, split compliment or triadic combinations! 
 * Modify this palette to your liking on the Palette menu
-* Once you switch to styling your alert, simply click and drag from the palette at the top to check out your palette in action. (currently desktop only)
+* Once you switch to styling your alert, simply click and drag from the palette at the top to check out your palette in action. 
 ## Upcoming Features
 ### in progress
-* color palette generator - mobile friendly
+* layout updates/reworks for color palette and forms on mobile
 ### the backburner
 * randomly generated names for untitled alerts
 
