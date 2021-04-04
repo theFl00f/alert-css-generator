@@ -40,7 +40,7 @@ db.once("open", (_) => {
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "jade");
+app.set("view engine", "pug");
 
 //**current way I can render the file
 // app.engine('html', require('ejs').renderFile)
