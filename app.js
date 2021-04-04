@@ -1,66 +1,76 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var bodyParser = require('body-parser')
+require("dotenv").config();
+var createError = require("http-errors");
+var express = require("express");
+var path = require("path");
+var cookieParser = require("cookie-parser");
+var logger = require("morgan");
 
-
-var alertsRouter = require('./routes/alerts');
+var alertsRouter = require("./routes/alerts");
 
 var app = express();
 
 //mongoose setup
 
-var Mongoose = require('mongoose');
-var url = 'mongodb://username:passw0rd@ds239009.mlab.com:39009/heroku_szr6bxv6'
+var Mongoose = require("mongoose");
 
-Mongoose.connect(url, { useNewUrlParser: true })
+if (!process.env.MONGO_URL) {
+  throw new Error("No MONGO_URL env variable was provided");
+}
 
-var db = Mongoose.connection
+var url = process.env.MONGO_URL;
 
-db.once('open', _ => {
-  console.log('database connected: ', url)
-})
+const connectToMongoose = async () => {
+  try {
+    await Mongoose.connect(url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
 
+connectToMongoose();
+
+var db = Mongoose.connection;
+
+db.once("open", (_) => {
+  console.log("database connected: ", url);
+});
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "jade");
 
 //**current way I can render the file
 // app.engine('html', require('ejs').renderFile)
 
-app.use(logger('dev'));
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
-
-app.use('/', alertsRouter);
+app.use("/", alertsRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
-
 app.listen(3000, () => {
-  console.log('listening at port 3000')
-})
+  console.log("listening at port 3000");
+});
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = req.app.get("env") === "development" ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render("error");
 });
 
 module.exports = app;
