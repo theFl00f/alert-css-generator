@@ -17,7 +17,7 @@
     "kill-port": "^1.6.0",
     "mongoose": "^5.9.19",
     "morgan": "~1.9.1",
-    "nodemon": "^2.0.7",
+    "nodemon": "^2.0.20",
     "pug": "^3.0.2",
     "sass": "^1.26.8",
     "tinycolor": "0.0.1"
